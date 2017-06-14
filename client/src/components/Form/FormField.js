@@ -6,7 +6,7 @@ const renderField = ({ type, label, input, meta: { touched, error } }) => {
       <label className="display-none">{label}</label>
       {!error && <input className="pt-input pt-fill form-text-input" {...input} type={type} placeholder={label} />}
       {touched && error &&
-      <input className="pt-input form-text-input" {...input} type={type} placeholder={error} />}
+      <input className="pt-input pt-fill form-text-input" {...input} type={type} placeholder={error} />}
     </div>
   )
 };
