@@ -1,0 +1,28 @@
+.background--wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.background--main-wrapper {
+   position: relative;
+   z-index: 2;
+
+}
+.background--img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.9;
+  height: 120vh;
+  width: 100vw;
+}
+
+.background--img img {
+    margin-top: -10%;
+    width:110%;
+    height: 100%;
+}

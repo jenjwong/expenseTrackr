@@ -1,41 +1,14 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
-import FormField from './FormField';
-import PasswordField from './PasswordField';
+import FormField from './Form/FormField';
+import submit from './Form/registerHelpers';
 
-const submit = ({ firstName='', lastName='', email='' }, submitAction) => {
-  let error = {};
-  let isError = false;
-
-  if (firstName.trim() === '') {
-    error.firstName = 'Required';
-    isError = true;
-  }
-
-  if (lastName.trim() === '') {
-    error.lastName = 'Required';
-    isError = true;
-  }
-
-  if (email.trim() === '') {
-    error.email = 'Required';
-    isError = true;
-  }
-
-  if (isError) {
-    throw new SubmissionError(error);
-  } else {
-    submitAction({firstName, lastName, email});
-  }
-}
-
-const RegisterFunc = ({ handleSubmit, submitAction }) => (
-  <form onSubmit={handleSubmit((fields) => submit(fields, submitAction))}>
-    <Field name="firstName" label='First Name' component={FormField} type="text"/>
-    <Field name="lastName" label='Last Name' component={FormField} type="text"/>
+const RegisterFunc = ({ handleSubmit, register }) => (
+  <form onSubmit={handleSubmit((fields) => submit(fields, register))}>
+    <Field name="name" label='Name' component={FormField} type="text"/>
     <Field name="email" label='Email' component={FormField} type="email"/>
-    <Field name="password" label='Password' component={PasswordField} type="text"/>
-    <button type="submit">Submit</button>
+    <Field name="password" label='Password' component={FormField} type="password"/>
+    <button className="pt-button pt-intent-primary submit-button" type="submit">Submit</button>
   </form>
 );
 

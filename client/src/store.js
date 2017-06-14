@@ -1,7 +1,8 @@
 import {createStore, compose, applyMiddleware} from 'redux';
 import ReduxPromise from 'redux-promise';
+import ReduxThunk from 'redux-thunk';
 import reducer from './reducers';
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(ReduxThunk, ReduxPromise)(createStore);
 
 const hasDevTools = () => typeof window === 'object' && typeof window.devToolsExtension !== 'undefined';
 

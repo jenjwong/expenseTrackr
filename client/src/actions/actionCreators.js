@@ -14,16 +14,3 @@ export const submitAction = (data) => {
     type: REQUEST_SUBMIT, data
   }
 }
-
-export const login = (data) => {
-  const url = `${ROOT_URL}`;
-  let isSuccess;
-  axios.post('/api/v1/register',  { name: 'notAdmin', password: 'u', email: 'xxxx@uvic.ca', admin: 'true' })
-  .then((res) => {
-    isSuccess = true;
-  })
-  .catch((error) => {
-    isSuccess = false;
-  })
-  return isSuccess ? { type: LOGIN_SUCCESS, bool: true } : { type: LOGIN_SUCCESS, bool: false }
-}

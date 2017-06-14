@@ -1,0 +1,15 @@
+.display-none {
+  display: none;
+}
+
+.form-text-input {
+  margin: 3.5%;
+}
+
+.error-text {
+  color: #A82A2A;
+}
+
+.submit-button {
+  margin: 5%;
+}
