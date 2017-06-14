@@ -1,26 +1,29 @@
 import axios from 'axios';
-import {CHANGE_DAY, REQUEST_SUBMIT} from './index';
+import {CHANGE_DAY, REQUEST_SUBMIT, LOGIN_SUCCESS} from './index';
+const ROOT_URL = '/api/v1/login';
 
-export const changeDay = (day) => ({
-  type: CHANGE_DAY, day,
-});
+export const changeDay = (day) => {
+  return {
+    type: CHANGE_DAY, day,
 
-export const submitAction = (data) => ({
-  type: REQUEST_SUBMIT, data
-})
+  }
+};
 
+export const submitAction = (data) => {
+  return {
+    type: REQUEST_SUBMIT, data
+  }
+}
 
-// api/v1/login
-// const ROOT_URL = `http://localhost:3000/${API_KEY}`;
-//
-// export const FETCH_WEATHER = 'FETCH_WEATHER';
-//
-// export function fetchWeather(city) {
-//   const url = `${ROOT_URL}&q=${city},us`;
-//   const request = axios.get(url);
-//
-//   return {
-//     type: FETCH_WEATHER,
-//     payload: request
-//   };
-// }
+export const login = (data) => {
+  const url = `${ROOT_URL}`;
+  let isSuccess;
+  axios.post('/api/v1/register',  { name: 'notAdmin', password: 'u', email: 'xxxx@uvic.ca', admin: 'true' })
+  .then((res) => {
+    isSuccess = true;
+  })
+  .catch((error) => {
+    isSuccess = false;
+  })
+  return isSuccess ? { type: LOGIN_SUCCESS, bool: true } : { type: LOGIN_SUCCESS, bool: false }
+}

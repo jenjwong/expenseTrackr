@@ -1,21 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 import FormField from './FormField';
 import PasswordField from './PasswordField';
 
-const submit = ({ firstName='', lastName='', email='' }, submitAction) => {
+
+const submit = ({ email='', password="" }, login) => {
   let error = {};
   let isError = false;
-
-  // if (firstName.trim() === '') {
-  //   error.firstName = 'Required';
-  //   isError = true;
-  // }
-  //
-  // if (lastName.trim() === '') {
-  //   error.lastName = 'Required';
-  //   isError = true;
-  // }
 
   if (email.trim() === '') {
     error.email = 'Required';
@@ -24,23 +15,29 @@ const submit = ({ firstName='', lastName='', email='' }, submitAction) => {
 
   if (isError) {
     throw new SubmissionError(error);
-  } else {
-    submitAction({firstName, lastName, email});
+    return false;
+  }
+  login({email, password});
+}
+
+class LoginFunc extends PureComponent {
+
+
+  render() {
+    let { handleSubmit, login, changeDay } = this.props;
+    return (
+      <form onSubmit={handleSubmit((fields) => submit(fields, login))}>
+        <Field name="email" label='Email' component={FormField} type="email"/>
+        <Field name="password" label='Password' component={PasswordField} type="text"/>
+        <button type="submit">Submit</button>
+      </form>
+    )
   }
 }
 
-const LoginFunc = ({ handleSubmit, submitAction }) => (
-  <form onSubmit={handleSubmit((fields) => submit(fields, submitAction))}>
-    {/* <Field name="firstName" label='First Name' component={FormField} type="text"/>
-    <Field name="lastName" label='Last Name' component={FormField} type="text"/> */}
-    <Field name="email" label='Email' component={FormField} type="email"/>
-    <Field name="password" label='Password' component={PasswordField} type="text"/>
-    <button type="submit">Submit</button>
-  </form>
-);
 
 const Login = reduxForm({
-  form: 'contact'
+  form: 'log'
 })(LoginFunc);
 
 export default Login;

@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {Route, Link} from 'react-router-dom';
 import {changeDay} from '../actions/actionCreators';
 import Login from './LoginContainer';
+import Register from './RegisterContainer';
 import axios from 'axios';
 
 import './Splash.css';
@@ -12,19 +13,24 @@ import './Splash.css';
 class Splash extends PureComponent {
 
   componentDidMount() {
-    axios.get('/fml').then((e) => console.log(e.data))
-
-  }
+    axios.get('/x').then((e) => console.log(e.data))
+    axios.post('/register', { email: 'qqxcxcxzczcxczcxzqq@me.com', name: 'xxxxxxxqqqjenjwong', password: 'jkjj'})
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+    }
 
   render() {
     let loginRegister = this.props.location.pathname.includes('register') ? 'login' : 'register';
 
     return (
       <div className="login--wrapper">
-        <Login />
-        {/* <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Login} />
-        <Link to={`/${loginRegister}`}>{loginRegister}</Link> */}
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Link to={`/${loginRegister}`}>{loginRegister}</Link>
       </div>
     );
   }

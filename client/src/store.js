@@ -1,11 +1,13 @@
-import {createStore, compose} from 'redux';
+import {createStore, compose, applyMiddleware} from 'redux';
+import ReduxPromise from 'redux-promise';
 import reducer from './reducers';
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 const hasDevTools = () => typeof window === 'object' && typeof window.devToolsExtension !== 'undefined';
 
-const createDevStore = () => createStore(reducer, compose(hasDevTools() ? window.devToolsExtension() : (f) => f));
+const createDevStore = () => createStoreWithMiddleware(reducer, compose(hasDevTools() ? window.devToolsExtension() : (f) => f));
 
-const createProdStore = () => createStore(reducer);
+const createProdStore = () => createStoreWithMiddleware(reducer);
 
 const storeConfig = {development: createDevStore, production: createProdStore};
 
