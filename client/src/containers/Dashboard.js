@@ -1,33 +1,47 @@
 import React, {PureComponent} from 'react';
-// import PropTypes from 'prop-types';
-// import {connect} from 'react-redux';
-// import {bindActionCreators} from 'redux';
-// import {Route, Link, Miss} from 'react-router-dom';
-// import {changeDay} from '../actions/actionCreators';
-// import Login from './LoginContainer';
-// import Register from './RegisterContainer';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {Route, Link} from 'react-router-dom';
+import * as actionCreators from '../actions/apiActionCreators';
+import Navbar from '../components/Navbar';
+import Dialogue from '../components/Dialogue';
+import ExpenseForm from '../containers/ExpenseFormContainer';
 
-// import './Splash.css';
+import './Splash.css';
 
-const Dash = () => {
+const Dashboard = ({logout}) => {
   return (
-    <div>Dash</div>
+
+    <div className="dashboard--wrapper">
+      <Navbar handleLogout={logout} />
+      <Dialogue>
+        <ExpenseForm />
+      </Dialogue>
+
+      {/* <p className="pt-icon-banl-account"></p>
+      <p className="pt-icon-add-row-bottom thething"></p>
+      <span className="pt-icon-size pt-icon-name"></span>
+
+<span class="pt-icon-standard pt-icon-projects">  <div className="pt-icon-timeline-events"></div></span>
+<span class="pt-icon-large pt-icon-geosearch pt-intent-success"></span>
+ */}
+
+      Dash</div>
   )
 }
 
-export default Dash;
 
 
 
 
-//
-// const mapStateToProps = (state) => ({
-//   day: state.day,
-// });
-//
-// const mapDispatchToProps = (dispatch) => ({
-//   changeDay: bindActionCreators(changeDay, dispatch)
-// });
-//
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+
+const mapStateToProps = (state) => ({
+  day: state.day,
+});
+
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators(actionCreators, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

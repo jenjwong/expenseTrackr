@@ -13,7 +13,7 @@ const RegisterFunc = ({ handleSubmit, register }) => (
 );
 
 const Register = reduxForm({
-  form: 'contact'
+  form: 'register'
 })(RegisterFunc);
 
 export default Register;

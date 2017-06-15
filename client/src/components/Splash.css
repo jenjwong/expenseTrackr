@@ -1,0 +1,31 @@
+.splash--card {
+  width: 90vw;
+  height: 90vw;
+  padding: 17%;
+  background-color: #202B33;
+  opacity: .6;
+  display: flex;
+}
+
+.splash--card-content {
+  flex: 1;
+  text-align: center;
+}
+
+.splash--card-content h1 {
+  color: #E1E8ED;
+}
+
+.splash--card--nav {
+  margin-top: -12%;
+  float: right;
+}
+
+@media (min-width: 70rem) {
+  .splash--card {
+    width: 30vw;
+    height: 45vh;
+    background-color: #202B33;
+    opacity: .6;
+  }
+}

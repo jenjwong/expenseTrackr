@@ -1,0 +1,8 @@
+@media (min-width: 70rem) {
+  .splash--card {
+    width: 30vw;
+    height: 45vh;
+    background-color: #202B33;
+    opacity: .6;
+  }
+}

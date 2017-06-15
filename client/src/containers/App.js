@@ -14,4 +14,4 @@ const App = () => (
 
 export default App;
 
-// store.dispatch({ type: 'LOGIN_SUCCESS', bool: true })
+store.dispatch({ type: 'ADD_EXPENSE', expense: {'name': 'yay', 'amount': 5} })
