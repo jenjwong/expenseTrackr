@@ -8,15 +8,15 @@ import Dashboard from './Dashboard';
 const Main = (props) => {
 
   // dev hack
-  if (true) {
-    return (
-      <Switch>
-        <Route path="/dashboard" component={Dashboard} />
-        <Redirect to="/dashboard" />
-        <Route component={Dashboard} />
-      </Switch>
-    )
-  }
+  // if (true) {
+  //   return (
+  //     <Switch>
+  //       <Route path="/dashboard" component={Dashboard} />
+  //       <Redirect to="/dashboard" />
+  //       <Route component={Dashboard} />
+  //     </Switch>
+  //   )
+  // }
 
   // real routing starts here
   if (props.isLoggedIn) {

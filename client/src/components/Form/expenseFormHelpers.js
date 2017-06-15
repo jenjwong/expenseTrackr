@@ -1,16 +1,17 @@
 import { SubmissionError } from 'redux-form';
+import {Intent} from '@blueprintjs/core';
 
 const submit = ({ name='', date='', type='', description='', amount='' }, createExpense) => {
-  // let error = {};
-  // let isError = false;
-  //
+  let error = {};
+  let isError = false;
+  // 
   // if (name.trim() === '') {
   //   error.name = 'Please enter name';
   //   isError = true;
   // }
   //
-  // if (descripton.trim() === '') {
-  //   error.descripton = 'Must be valid email';
+  // if (description.trim() === '') {
+  //   error.description = 'Must be valid email';
   //   isError = true;
   // }
   //
@@ -28,13 +29,13 @@ const submit = ({ name='', date='', type='', description='', amount='' }, create
   //   error.amount = 'Please enter password';
   //   isError = true;
   // }
-  createExpense({name, date, description, amount, type});
 
-  // if (isError) {
-  //   throw new SubmissionError(error);
-  // } else {
-  //   addEvent({name, date, descripton, amount, type});
-  // }
+  if (isError) {
+    throw new SubmissionError(error);
+  } else {
+    createExpense({name, date, description, amount, type});
+
+  }
 }
 
 export default submit;

@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/apiActionCreators';
+import * as actionCreators from '../actions/actionCreators/expensesActionCreators';
 import ExpenseForm from '../components/ExpenseForm';
 
 const mapDispatchToProps = (dispatch) => (

@@ -4,6 +4,12 @@ import FormField from './Form/FormField';
 import submit from './Form/loginHelpers';
 
 class LoginFunc extends PureComponent {
+  componentDidMount(){
+    this.props.login({email: "q@q.com", password: "q"})
+    // this.props.login({email: "test@test.com", password: "test"})
+  }
+
+
   render() {
     let { handleSubmit, login, changeDay } = this.props;
     return (

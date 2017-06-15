@@ -14,4 +14,5 @@ const App = () => (
 
 export default App;
 
-store.dispatch({ type: 'ADD_EXPENSE', expense: {'name': 'yay', 'amount': 5} })
+// store.dispatch({ type: 'ADD_EXPENSE', expense: {'name': 'yay', 'amount': 100} })
+// store.dispatch({ type: 'GET_EXPENSES', expenses: {'name': 'thing', 'amount': 5} })
