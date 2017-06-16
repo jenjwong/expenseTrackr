@@ -7,60 +7,41 @@ import * as actionCreators from '../actions/actionCreators';
 import Navbar from '../components/Navbar';
 import Dialogue from '../components/Dialogue';
 import ExpenseForm from '../containers/ExpenseFormContainer';
-import Table from '../components/Table';
-
+import Table from '../components/Table/Table';
+import ExpenseFormComponent from '../components/ExpenseForm'
 
 import './Dashboard.css';
 
 class Dashboard extends PureComponent {
-
   componentDidMount() {
     this.props.getExpenses();
   }
 
   render() {
-    console.log(this.props)
-    console.log(this.props.expenses[this.props.selectedExpense])
-    const {expenses, selectedExpense, selectExpense} = this.props;
+    if (this.props.selectedExpense > 1) {
+      this.props.reduxFormChange('addExpense', 'name', `${this.props.selectedExpense}`);
 
-    let tableHeaders = ['Name', 'Description', 'Type', 'Cost'];
+    }
+    const {expenses, selectedExpense, selectExpense, logout, reduxFormChange} = this.props;
+
+    let tableHeaders = ['Name', 'Description', 'Type', 'Amount'];
     return (
       <div className="dashboard--wrapper">
-        {/* // <Navbar handleLogout={logout} /> */}
+        <Navbar handleLogout={logout} />
         {/* <Dialogue> */}
-          <ExpenseForm />
+          {/* <ExpenseForm /> */}
+          <ExpenseFormComponent selectExpense={selectExpense} />
         {/* </Dialogue> */}
-        <Table expenses={expenses} headers={tableHeaders} selectExpense={selectExpense} />
+        <Table
+          items={expenses}
+          headers={tableHeaders}
+          reduxFormChange={reduxFormChange}
+          formName={'addExpense'}
+        />
       </div>
     )
   }
 }
-
-// const Dashboard = ({logout, getExpenses}) => {
-//   console.log(getExpenses())
-//   return (
-//
-//     <div className="dashboard--wrapper">
-//       <Navbar handleLogout={logout} />
-//       <Dialogue>
-//         <ExpenseForm />
-//       </Dialogue>
-//
-//       {/* <p className="pt-icon-banl-account"></p>
-//       <p className="pt-icon-add-row-bottom thething"></p>
-//       <span className="pt-icon-size pt-icon-name"></span>
-//
-// <span class="pt-icon-standard pt-icon-projects">  <div className="pt-icon-timeline-events"></div></span>
-// <span class="pt-icon-large pt-icon-geosearch pt-intent-success"></span>
-//  */}
-//
-//       Dash</div>
-//   )
-// }
-
-
-
-
 
 
 const mapStateToProps = (state) => ({
