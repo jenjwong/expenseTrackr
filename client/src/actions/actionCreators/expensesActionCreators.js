@@ -3,7 +3,7 @@ import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE, EDIT_EXPENSE} from '../index'
 
 
 export const createExpense = (data) => {
-  console.log('ACTION CREATOR', data)
+  console.log('CREATE', data)
   return (dispatch) => {
     axios.post('/api/v1/expenses',  data)
     .then((res) => {
@@ -16,6 +16,7 @@ export const createExpense = (data) => {
 
 export const editExpense = (data) => {
   return (dispatch) => {
+    console.log('EDIT', data)
     axios.put(`/api/v1/expenses/${data.id}/edit`,  data)
     .then((res) => {
       let expense = res.data;
@@ -49,12 +50,19 @@ export const getExpensesAdmin = (expenses) => {
   };
 };
 
+
+export const handleExpenseSubmit = (data) => {
+    return (dispatch) => {
+      data.created === '' ? dispatch(createExpense(data)) : dispatch(editExpense(data));
+    }
+}
+
+
+
+// TODO: delete this
 export const selectExpense = (expenseIndex) => {
   return { type: SELECT_EXPENSE, expenseIndex }
 };
-
-
-
 
 
 

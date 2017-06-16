@@ -19,12 +19,6 @@ class Dashboard extends PureComponent {
   }
 
   render() {
-    if (this.props.selectedExpense > 1) {
-      // this.props.reduxFormChange('addExpense', 'name', `${this.props.selectedExpense}`);
-
-      // this.props.createExpense({name: 'jen', 'amount': 100})
-    }
-
 
     const {expenses, selectedExpense, selectExpense, logout, reduxFormChange, } = this.props;
 
@@ -34,7 +28,6 @@ class Dashboard extends PureComponent {
         <Navbar handleLogout={logout} isAdmin={false}/>
         {/* <Dialogue> */}
           <ExpenseForm />
-          {/* <ExpenseFormComponent  /> */}
         {/* </Dialogue> */}
         <Table
           items={expenses}

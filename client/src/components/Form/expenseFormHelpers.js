@@ -34,7 +34,7 @@ const submit = ({ name='', date='', type='', description='', amount='', created=
   if (isError) {
     throw new SubmissionError(error);
   } else {
-    handleExpenseSubmit({name, date, type, description, amount, created, id });
+    handleExpenseSubmit({name, date, type, description, amount, id, created });
   }
 }
 
