@@ -10,9 +10,9 @@ const Table = ({items, headers, reduxFormChange, formName}) => {
     <table className="expense-table pt-table pt-striped pt-bordered pt-interactive" >
       <TableHeader headers={headers} />
       <tbody>
-        {items.map((item, index) =>
+        {items.map((item) =>
           <TableRowEntry
-            key={item._id}
+            key={item.created}
             item={item}
             handleClick={populateFormFields.bind(this, reduxFormChange, item, 'addExpense')}
             headers={headers}

@@ -15,22 +15,26 @@ import './Dashboard.css';
 class Dashboard extends PureComponent {
   componentDidMount() {
     this.props.getExpenses();
+    // config admin
   }
 
   render() {
     if (this.props.selectedExpense > 1) {
-      this.props.reduxFormChange('addExpense', 'name', `${this.props.selectedExpense}`);
+      // this.props.reduxFormChange('addExpense', 'name', `${this.props.selectedExpense}`);
 
+      // this.props.createExpense({name: 'jen', 'amount': 100})
     }
-    const {expenses, selectedExpense, selectExpense, logout, reduxFormChange} = this.props;
+
+
+    const {expenses, selectedExpense, selectExpense, logout, reduxFormChange, } = this.props;
 
     let tableHeaders = ['Name', 'Description', 'Type', 'Amount'];
     return (
       <div className="dashboard--wrapper">
-        <Navbar handleLogout={logout} />
+        <Navbar handleLogout={logout} isAdmin={false}/>
         {/* <Dialogue> */}
-          {/* <ExpenseForm /> */}
-          <ExpenseFormComponent selectExpense={selectExpense} />
+          <ExpenseForm />
+          {/* <ExpenseFormComponent  /> */}
         {/* </Dialogue> */}
         <Table
           items={expenses}

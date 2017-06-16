@@ -1,10 +1,11 @@
 import { SubmissionError } from 'redux-form';
 import {Intent} from '@blueprintjs/core';
 
-const submit = ({ name='', date='', type='', description='', amount='' }, createExpense) => {
+const submit = ({ name='', date='', type='', description='', amount='', created='', _id='', author='' }, handleExpenseSubmit) => {
   let error = {};
   let isError = false;
-  // 
+  let id = _id;
+  //
   // if (name.trim() === '') {
   //   error.name = 'Please enter name';
   //   isError = true;
@@ -33,8 +34,7 @@ const submit = ({ name='', date='', type='', description='', amount='' }, create
   if (isError) {
     throw new SubmissionError(error);
   } else {
-    createExpense({name, date, description, amount, type});
-
+    handleExpenseSubmit({name, date, type, description, amount, created, id });
   }
 }
 
