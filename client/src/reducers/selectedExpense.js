@@ -5,7 +5,7 @@ const selectExpense = (state=-1, action) => {
 }
 
 
-const expenses = (state=-1, action) => {
+const selectedExpense = (state=-1, action) => {
   switch (action.type) {
       case SELECT_EXPENSE:
           return selectExpense(state, action)
@@ -16,4 +16,4 @@ const expenses = (state=-1, action) => {
 
 
 
-export default expenses;
+export default selectedExpense;

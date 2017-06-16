@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Route, Link} from 'react-router-dom';
-// import * as actionCreators from '../actions/actionCreators/authActionCreators';
-import * as ex from '../actions/actionCreators/expensesActionCreators';
+import * as actionCreators from '../actions/actionCreators';
 import Navbar from '../components/Navbar';
 import Dialogue from '../components/Dialogue';
 import ExpenseForm from '../containers/ExpenseFormContainer';
@@ -20,7 +19,10 @@ class Dashboard extends PureComponent {
   }
 
   render() {
-    const {expenses} = this.props;
+    console.log(this.props)
+    console.log(this.props.expenses[this.props.selectedExpense])
+    const {expenses, selectedExpense, selectExpense} = this.props;
+
     let tableHeaders = ['Name', 'Description', 'Type', 'Cost'];
     return (
       <div className="dashboard--wrapper">
@@ -28,7 +30,7 @@ class Dashboard extends PureComponent {
         {/* <Dialogue> */}
           <ExpenseForm />
         {/* </Dialogue> */}
-        <Table expenses={expenses} headers={tableHeaders} />
+        <Table expenses={expenses} headers={tableHeaders} selectExpense={selectExpense} />
       </div>
     )
   }
@@ -64,10 +66,11 @@ class Dashboard extends PureComponent {
 const mapStateToProps = (state) => ({
   day: state.day,
   expenses: state.expenses,
+  selectedExpense: state.selectedExpense
 });
 
 const mapDispatchToProps = (dispatch) => (
-  bindActionCreators(ex, dispatch)
+  bindActionCreators(actionCreators, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

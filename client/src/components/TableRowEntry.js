@@ -1,9 +1,8 @@
 import React from 'react';
 
-const TableRow = ({expense}) => {
-  console.log(expense)
+const TableRow = ({expense, selectExpense}) => {
   return (
-      <tr>
+      <tr onClick={selectExpense}>
         <td>{expense.name}</td>
         <td>{expense.description}</td>
         <td>{expense.type}</td>

@@ -9,6 +9,7 @@ const getExpenses = (state=[], action) => {
   return  [...state, ...action.expenses.stores];
 }
 
+
 const expenses = (state=[], action) => {
   switch (action.type) {
       case GET_EXPENSES:
