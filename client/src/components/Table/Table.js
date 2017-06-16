@@ -5,7 +5,7 @@ import {populateFormFields} from '../../utils/helpers';
 
 import './Table.css';
 
-const Table = ({items, headers, reduxFormChange, formName}) => {
+const Table = ({items, headers, reduxFormChange, formName, handleDelete}) => {
   return (
     <table className="expense-table pt-table pt-striped pt-bordered pt-interactive" >
       <TableHeader headers={headers} />
@@ -15,6 +15,7 @@ const Table = ({items, headers, reduxFormChange, formName}) => {
             key={item._id}
             item={item}
             handleClick={populateFormFields.bind(this, reduxFormChange, item, 'addExpense')}
+            handleDelete={handleDelete.bind(this, item)}
             headers={headers}
           />
         )}

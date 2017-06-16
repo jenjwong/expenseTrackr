@@ -20,7 +20,7 @@ class Dashboard extends PureComponent {
 
   render() {
 
-    const {expenses, selectedExpense, selectExpense, logout, reduxFormChange, } = this.props;
+    const {expenses, selectedExpense, selectExpense, logout, reduxFormChange, deleteExpense} = this.props;
 
     let tableHeaders = ['Name', 'Description', 'Type', 'Amount'];
     return (
@@ -33,6 +33,7 @@ class Dashboard extends PureComponent {
           items={expenses}
           headers={tableHeaders}
           reduxFormChange={reduxFormChange}
+          handleDelete={deleteExpense}
           formName={'addExpense'}
         />
       </div>

@@ -10,7 +10,9 @@ const Navbar = ({handleLogout, isAdmin}) => {
       </div>
       <div className="pt-navbar-group pt-align-right">
         {isAdmin && <button className="pt-button pt-minimal pt-icon-home">Admin</button>}
+        <button className="pt-button pt-minimal pt-icon-home">Admin</button>
         <button onClick={handleClick} className="pt-button pt-minimal pt-icon-document">Logout</button>
+        <button onClick={handleClick} className="pt-button pt-minimal pt-icon-document">Report</button>
         <span className="pt-navbar-divider"></span>
         <button className="pt-button pt-minimal pt-icon-user"></button>
         <button className="pt-button pt-minimal pt-icon-notifications"></button>

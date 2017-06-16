@@ -3,3 +3,12 @@
   width: 100vw;
   height: auto;
 }
+
+/*.table--row {
+  position: relative;
+}
+*/
+.table--row--delete {
+  width: 10px;
+  font-size: 140%;
+}
