@@ -6,7 +6,7 @@ import TableCell from './TableCell';
 const TableRow = ({item, handleClick, headers}) => {
   return (
       <tr onClick={handleClick}>
-        {headers.map(key => <TableCell key={key} item={`${item[key.toLowerCase()]}`} />)}
+        {headers.map(key=> <TableCell key={`${item._id}${key}`} item={`${item[key.toLowerCase()]}`} />)}
       </tr>
   )
 }

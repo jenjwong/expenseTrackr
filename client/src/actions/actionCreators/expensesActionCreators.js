@@ -1,8 +1,7 @@
 import axios from 'axios';
-import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE} from '../index';
+import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE, EDIT_EXPENSE} from '../index';
 
 
-// TODO: should get response from server with id_number
 export const createExpense = (data) => {
   console.log('ACTION CREATOR', data)
   return (dispatch) => {
@@ -10,6 +9,18 @@ export const createExpense = (data) => {
     .then((res) => {
       let expense = res.data;
       dispatch({ type: ADD_EXPENSE, expense })
+    })
+    .catch((error) => console.error(`Error in createExpense action creator: ${error}`));
+  };
+};
+
+export const editExpense = (data) => {
+  return (dispatch) => {
+    axios.put(`/api/v1/expenses/${data.id}/edit`,  data)
+    .then((res) => {
+      let expense = res.data;
+      dispatch({ type: EDIT_EXPENSE, expense })
+      console.log('EPENS', expense)
     })
     .catch((error) => console.error(`Error in createExpense action creator: ${error}`));
   };

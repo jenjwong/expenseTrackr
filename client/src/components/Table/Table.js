@@ -12,7 +12,7 @@ const Table = ({items, headers, reduxFormChange, formName}) => {
       <tbody>
         {items.map((item) =>
           <TableRowEntry
-            key={item.created}
+            key={item._id}
             item={item}
             handleClick={populateFormFields.bind(this, reduxFormChange, item, 'addExpense')}
             headers={headers}
