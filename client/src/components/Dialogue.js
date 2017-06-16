@@ -1,15 +1,15 @@
 import React from 'react';
 import {Button, Dialog, Intent} from '@blueprintjs/core';
 
-import './Navbar.css';
+import './Dialogue.css';
 
-export default class DialogExample extends React.Component {
+export default class Dialogue extends React.Component {
     state = { isOpen: false };
 
     render() {
         return (
-            <div>
-                <Button onClick={this.toggleDialog} text="Show dialog" />
+            <div className="dialogue--wrapper" >
+                <Button onClick={this.toggleDialog} text="Add Expense" />
                 <Dialog
                     iconName="inbox"
                     isOpen={this.state.isOpen}

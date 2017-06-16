@@ -3,3 +3,4 @@ export const REQUEST_SUBMIT = 'REQUEST_SUBMIT';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const GET_EXPENSES = 'GET_EXPENSES';
+export const SELECT_EXPENSE = 'SELECT_EXPENSE';

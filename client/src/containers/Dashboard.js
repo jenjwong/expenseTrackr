@@ -8,20 +8,28 @@ import * as ex from '../actions/actionCreators/expensesActionCreators';
 import Navbar from '../components/Navbar';
 import Dialogue from '../components/Dialogue';
 import ExpenseForm from '../containers/ExpenseFormContainer';
+import Table from '../components/Table';
 
 
-import './Splash.css';
+import './Dashboard.css';
 
 class Dashboard extends PureComponent {
+
+  componentDidMount() {
+    this.props.getExpenses();
+  }
+
   render() {
-    console.log('Get expenses', this.props.getExpensesAdmin())
+    const {expenses} = this.props;
+    let tableHeaders = ['Name', 'Description', 'Type', 'Cost'];
     return (
-      <div>
-            {/* // <Navbar handleLogout={logout} /> */}
-            <Dialogue>
-              <ExpenseForm />
-            </Dialogue>
-            hello</div>
+      <div className="dashboard--wrapper">
+        {/* // <Navbar handleLogout={logout} /> */}
+        {/* <Dialogue> */}
+          <ExpenseForm />
+        {/* </Dialogue> */}
+        <Table expenses={expenses} headers={tableHeaders} />
+      </div>
     )
   }
 }
@@ -55,6 +63,7 @@ class Dashboard extends PureComponent {
 
 const mapStateToProps = (state) => ({
   day: state.day,
+  expenses: state.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => (

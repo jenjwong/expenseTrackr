@@ -19,3 +19,16 @@ const ExpenseForm = reduxForm({
 })(AddExpenseFunc);
 
 export default ExpenseForm;
+
+//
+// const mapStateToProps = state => ({
+//   initialValues: {
+//     title: state.autoFill.volumeInfo.title
+//   }
+// })
+//
+// const mapDispatchToProps = { createBook }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(
+//   reduxForm({ form: 'AutoForm', fields: ['title'] })(FillForm)
+// )

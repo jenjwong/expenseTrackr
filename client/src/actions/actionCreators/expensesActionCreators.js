@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_EXPENSES, ADD_EXPENSE} from '../index';
+import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE} from '../index';
 
 // TODO: should get response from server with id_number
 export const createExpense = (data) => {
@@ -34,4 +34,8 @@ export const getExpensesAdmin = (expenses) => {
     })
     .catch((error) => console.error(`Error in getExpenses action creator: ${error}`));
   };
+};
+
+export const selectExpense = (expenseIndex) => {
+  return { type: SELECT_EXPENSE, expenseIndex }
 };
