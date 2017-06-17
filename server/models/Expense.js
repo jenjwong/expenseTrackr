@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const slug = require('slugs');
 var ObjectId = mongoose.Types.ObjectId;
 
 const expenseSchema = new mongoose.Schema({
@@ -37,91 +36,20 @@ const expenseSchema = new mongoose.Schema({
   }
 });
 
-expenseSchema.statics.getExpenseSum = function(start, end) {
+expenseSchema.statics.getExpenseSum = function(start=Date.now(), end=Date.new(), userId='') {
   return this.aggregate([
-    { $match: {
-      $and: [
-          { created: { '$gte': start, '$lt': end } }
-      ]
-    } },
-
     {
-      $group: {
-          _id: null,
-          total: {
-              $sum: "$amount"
-          }
+      $match: {
+         $and: [
+             { created: { '$gte': new Date(start), '$lt': new Date(end) } },
+             { author: ObjectId(userId)}
+         ]
       }
-    }
-  ])
-};
-expenseSchema.statics.getExpenseSum = function(start, end) {
-  return this.aggregate([
-    { $match: {
-      $and: [
-          { created: { '$gte': start, '$lt': end } }
-      ]
-    } },
-
-    {
-      $group: {
-          _id: null,
-          total: {
-              $sum: "$amount"
-          }
-      }
-    }
-  ])
-};
-expenseSchema.statics.getExpenseSum = function(start, end) {
-  return this.aggregate([
-    { $match: {
-      $and: [
-          { created: { '$gte': start, '$lt': end } }
-      ]
-    } },
-
-    {
-      $group: {
-          _id: null,
-          total: {
-              $sum: "$amount"
-          }
-      }
-    }
-  ])
-};
-expenseSchema.statics.getExpenseSum = function(start, end) {
-  return this.aggregate([
-    { $match: {
-      $and: [
-          { created: { '$gte': start, '$lt': end } }
-      ]
-    } },
-
-    {
-      $group: {
-          _id: null,
-          total: {
-              $sum: "$amount"
-          }
-      }
-    }
-  ])
-};
-
-
-expenseSchema.statics.getExpenseSum = function(start, end) {
-  return this.aggregate([
-    { $match: {
-      $and: [
-          { created: { '$gte': start, '$lt': end } }
-      ]
-    } },
+    },
      {
          $group: {
              _id: {$week: '$created'},
-             documentCount: {$sum: "$amount"}
+             total: {$sum: "$amount"}
          }
      }
   ])

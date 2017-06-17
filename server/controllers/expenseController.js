@@ -87,13 +87,8 @@ exports.editExpense = async (req, res) => {
 
 // default by week, but allow for any period of time
 exports.getExpenseReport = async (req, res) => {
-  const start = new Date(2016, 5, 10);
-  const end = new Date(2018, 5, 14)
-  let userId = '';
-  // let userId = req.user._id;
-  const sumPromise = Expense.getExpenseSum(userId, start, end);
+  let userId = req.user;
+  const sumPromise = Expense.getExpenseSum(req.params.start, req.params.end, req.user.id);
   const [sumForRange, expenses] = await Promise.all([sumPromise]);
-  const formattedData = sumForRange.reduce((acc, item) => {
-  })
   res.send(sumForRange);
 };

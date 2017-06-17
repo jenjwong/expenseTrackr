@@ -67,12 +67,14 @@ export const getExpensesAdmin = (expenses) => {
 };
 
 
-export const getExpenseReport = (expenses) => {
+export const getExpenseReport = (start, end) => {
+  console.log('THIS IS ACTION CONTROLLER REPORT')
   return (dispatch) => {
-    axios.get('/api/v1/expenses/report')
+    axios.get(`/api/v1/expenses/report/${start}/${end}`)
     .then((res) => {
-      let expenses = res.data;
-      dispatch({ type: GET_EXPENSES, expenses })
+      let report = res.data;
+      console.log(report, 'this is report')
+      dispatch({ type: GET_REPORT, report })
     })
     .catch((error) => console.error(`Error in getExpenses action creator: ${error}`));
   };

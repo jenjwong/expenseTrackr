@@ -17,7 +17,7 @@ expenseRouter.delete('/:id',
   catchErrors(expenseController.deleteExpense)
 );
 
-expenseRouter.get('/report', catchErrors(expenseController.getExpenseReport));
+expenseRouter.get('/report/:start/:end', catchErrors(expenseController.getExpenseReport));
 expenseRouter.get('/admin', catchErrors(expenseController.getExpensesAdmin));
 expenseRouter.get('/page/:page', catchErrors(expenseController.getExpenses));
 

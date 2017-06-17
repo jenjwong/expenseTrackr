@@ -10,32 +10,44 @@ import ExpenseForm from '../containers/ExpenseFormContainer';
 import Table from '../components/Table/Table';
 import ExpenseFormComponent from '../components/ExpenseForm';
 import moment from 'moment';
+import DatePicker from '../containers/DatePickerContainer';
 
 import './Dashboard.css';
 
 class Dashboard extends PureComponent {
   componentDidMount() {
     this.props.getExpenses();
+    this.props.getExpenseReport();
   }
+
 
   render() {
 
     const {expenses, selectedExpense, selectExpense, logout, reduxFormChange, deleteExpense} = this.props;
-  
+
 
     let tableHeaders = ['Name', 'Description', 'Type', 'Amount'];
     return (
       <div className="dashboard--wrapper">
         <Navbar handleLogout={logout} isAdmin={false}/>
+        <h1>Report</h1>
+        <h1>Chart</h1>
+        <h1>Number</h1>
+        <div>
+          <DatePicker />
+
+        </div>
+
+        <h1>Expense Form</h1>
         <ExpenseForm />
         <h1>Expense Report</h1>
-        <Table
+        {/* <Table
           items={expenses}
           headers={tableHeaders}
           reduxFormChange={reduxFormChange}
           handleDelete={deleteExpense}
           formName={'addExpense'}
-        />
+        /> */}
         <h1>All Expenses</h1>
         <Table
           items={expenses}
