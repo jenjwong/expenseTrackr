@@ -1,10 +1,13 @@
 import axios from 'axios';
 import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT} from '../index';
+import {formatDateForServer} from '../../utils/helpers';
 
 export const handleExpenseSubmit = (data) => {
   console.log(data)
+  // handles timezones one day off error
   return (dispatch) => {
-    data.created === undefined ? dispatch(createExpense(data)) : dispatch(editExpense(data));
+    // data.date = formatDateForServer(data.date);
+    data.id === '' ? dispatch(createExpense(data)) : dispatch(editExpense(data));
   }
 }
 

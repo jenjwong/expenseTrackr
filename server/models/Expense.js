@@ -26,6 +26,10 @@ const expenseSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  date: {
+    type: Date,
+    default: Date.now
+  },
   author: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',

@@ -1,6 +1,6 @@
 import {ADD_EXPENSE, GET_EXPENSES, EDIT_EXPENSE, DELETE_EXPENSE} from '../actions';
 
-const addExpense = (state=[], action) => [...state, action.expense];
+const addExpense = (state=[], action) => [action.expense, ...state];
 
 const getExpenses = (state=[], action) => [...state, ...action.data.expenses];
 

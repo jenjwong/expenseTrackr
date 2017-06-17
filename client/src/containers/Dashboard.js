@@ -8,7 +8,8 @@ import Navbar from '../components/Navbar';
 import Dialogue from '../components/Dialogue';
 import ExpenseForm from '../containers/ExpenseFormContainer';
 import Table from '../components/Table/Table';
-import ExpenseFormComponent from '../components/ExpenseForm'
+import ExpenseFormComponent from '../components/ExpenseForm';
+import moment from 'moment';
 
 import './Dashboard.css';
 
@@ -20,6 +21,7 @@ class Dashboard extends PureComponent {
   render() {
 
     const {expenses, selectedExpense, selectExpense, logout, reduxFormChange, deleteExpense} = this.props;
+  
 
     let tableHeaders = ['Name', 'Description', 'Type', 'Amount'];
     return (

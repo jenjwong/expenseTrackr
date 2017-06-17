@@ -9,6 +9,7 @@ const confirmOwner = (expense, user, admin=false) => {
 };
 
 exports.createExpense = async (req, res) => {
+    console.log(req.body, 'CEATE EXPENSE')
   req.body.author = req.user._id;
   const expense = await (new Expense(req.body)).save();
   res.send(expense)
@@ -38,6 +39,7 @@ exports.getExpensesAdmin = async (req, res) => {
 };
 
 exports.getExpenses = async (req, res) => {
+  console.log(req.body, 'GET EXPENSE')
   const page = req.params.page || 1;
   const limit = 300;
   const skip = (page * limit) - limit;
