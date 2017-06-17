@@ -14,10 +14,6 @@ Generate personalized big-data about spending habits by manually entering expens
 #### Testing
 * Enzyme, Jest, Mocha, Codecept.js
 
-Bands Nearby Beta is available on web: http://beta.bandsnearby.com/
-
-Bands Nearby Desktop:
-![alt text](https://github.com/jenjwong/bands-nearby/blob/development/css/images/desktop.png "Bands Nearby Desktop")
 
 ## Getting Started
 
