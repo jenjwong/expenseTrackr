@@ -1,6 +1,7 @@
 import { SubmissionError } from 'redux-form';
+
 const submit = (props, handleExpenseSubmit) => {
-  let { name='', date='', type='', description='', amount='', created='', _id='', author='' } = props;
+  let { name='', date='', type='', description='', amount='', _id='', author='', created=undefined } = props;
   let error = {};
   let isError = false;
   let id = _id;
@@ -25,7 +26,7 @@ const submit = (props, handleExpenseSubmit) => {
     isError = true;
   }
 
-  if (amount.trim() === '') {
+  if (amount.toString().trim() === '') {
     error.amount = 'Please enter an amount';
     isError = true;
   }

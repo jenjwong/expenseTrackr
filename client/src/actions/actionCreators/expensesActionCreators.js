@@ -2,8 +2,9 @@ import axios from 'axios';
 import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT} from '../index';
 
 export const handleExpenseSubmit = (data) => {
+  console.log(data)
   return (dispatch) => {
-    data.created === '' ? dispatch(createExpense(data)) : dispatch(editExpense(data));
+    data.created === undefined ? dispatch(createExpense(data)) : dispatch(editExpense(data));
   }
 }
 
