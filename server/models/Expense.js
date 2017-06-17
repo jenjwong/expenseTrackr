@@ -36,11 +36,65 @@ const expenseSchema = new mongoose.Schema({
 expenseSchema.statics.getExpenseSum = function(start, end) {
   return this.aggregate([
     { $match: {
-      author: ObjectId('594476964024304ac4c97a65'),
       $and: [
           { created: { '$gte': start, '$lt': end } }
       ]
     } },
+
+    {
+      $group: {
+          _id: null,
+          total: {
+              $sum: "$amount"
+          }
+      }
+    }
+  ])
+};
+expenseSchema.statics.getExpenseSum = function(start, end) {
+  return this.aggregate([
+    { $match: {
+      $and: [
+          { created: { '$gte': start, '$lt': end } }
+      ]
+    } },
+
+    {
+      $group: {
+          _id: null,
+          total: {
+              $sum: "$amount"
+          }
+      }
+    }
+  ])
+};
+expenseSchema.statics.getExpenseSum = function(start, end) {
+  return this.aggregate([
+    { $match: {
+      $and: [
+          { created: { '$gte': start, '$lt': end } }
+      ]
+    } },
+
+    {
+      $group: {
+          _id: null,
+          total: {
+              $sum: "$amount"
+          }
+      }
+    }
+  ])
+};
+expenseSchema.statics.getExpenseSum = function(start, end) {
+  return this.aggregate([
+    { $match: {
+      $and: [
+          { created: { '$gte': start, '$lt': end } }
+      ]
+    } },
+
     {
       $group: {
           _id: null,
@@ -52,5 +106,21 @@ expenseSchema.statics.getExpenseSum = function(start, end) {
   ])
 };
 
+
+expenseSchema.statics.getExpenseSum = function(start, end) {
+  return this.aggregate([
+    { $match: {
+      $and: [
+          { created: { '$gte': start, '$lt': end } }
+      ]
+    } },
+     {
+         $group: {
+             _id: {$week: '$created'},
+             documentCount: {$sum: "$amount"}
+         }
+     }
+  ])
+};
 
 module.exports = mongoose.model('Expense', expenseSchema);
