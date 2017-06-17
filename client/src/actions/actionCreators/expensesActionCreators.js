@@ -1,5 +1,11 @@
 import axios from 'axios';
-import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE} from '../index';
+import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT} from '../index';
+
+export const handleExpenseSubmit = (data) => {
+  return (dispatch) => {
+    data.created === '' ? dispatch(createExpense(data)) : dispatch(editExpense(data));
+  }
+}
 
 export const createExpense = (data) => {
   return (dispatch) => {
@@ -25,7 +31,6 @@ export const editExpense = (data) => {
 
 export const deleteExpense = (data) => {
   return (dispatch) => {
-    console.log('delete', data)
     axios.delete(`/api/v1/expenses/${data._id}`,  data)
     .then((res) => {
       let expense = res.data;
@@ -37,10 +42,10 @@ export const deleteExpense = (data) => {
 
 export const getExpenses = (expenses) => {
   return (dispatch) => {
-    axios.get('/api/v1/expenses/admin')
+    axios.get('/api/v1/expenses/')
     .then((res) => {
-      let expenses = res.data;
-      dispatch({ type: GET_EXPENSES, expenses })
+      let data = res.data;
+      dispatch({ type: GET_EXPENSES, data })
     })
     .catch((error) => console.error(`Error in getExpenses action creator: ${error}`));
   };
@@ -51,22 +56,20 @@ export const getExpensesAdmin = (expenses) => {
     axios.get('/api/v1/expenses/admin')
     .then((res) => {
       let expenses = res.data;
-      console.log(res.user, res.data)
       dispatch({ type: GET_EXPENSES, expenses })
     })
     .catch((error) => console.error(`Error in getExpenses action creator: ${error}`));
   };
 };
 
-export const handleExpenseSubmit = (data) => {
-    return (dispatch) => {
-      data.created === '' ? dispatch(createExpense(data)) : dispatch(editExpense(data));
-    }
-}
 
-
-
-// TODO: delete this
-export const selectExpense = (expenseIndex) => {
-  return { type: SELECT_EXPENSE, expenseIndex }
+export const getExpenseReport = (expenses) => {
+  return (dispatch) => {
+    axios.get('/api/v1/expenses/report')
+    .then((res) => {
+      let expenses = res.data;
+      dispatch({ type: GET_EXPENSES, expenses })
+    })
+    .catch((error) => console.error(`Error in getExpenses action creator: ${error}`));
+  };
 };

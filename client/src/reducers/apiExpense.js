@@ -2,7 +2,7 @@ import {ADD_EXPENSE, GET_EXPENSES, EDIT_EXPENSE, DELETE_EXPENSE} from '../action
 
 const addExpense = (state=[], action) => [...state, action.expense];
 
-const getExpenses = (state=[], action) => [...state, ...action.expenses.stores];
+const getExpenses = (state=[], action) => [...state, ...action.data.expenses];
 
 const editExpense = (state=[], action) => state.map(item => item._id === action.expense._id ? action.expense : item);
 

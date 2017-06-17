@@ -15,7 +15,6 @@ import './Dashboard.css';
 class Dashboard extends PureComponent {
   componentDidMount() {
     this.props.getExpenses();
-    // config admin
   }
 
   render() {
@@ -26,9 +25,16 @@ class Dashboard extends PureComponent {
     return (
       <div className="dashboard--wrapper">
         <Navbar handleLogout={logout} isAdmin={false}/>
-        {/* <Dialogue> */}
-          <ExpenseForm />
-        {/* </Dialogue> */}
+        <ExpenseForm />
+        <h1>Expense Report</h1>
+        <Table
+          items={expenses}
+          headers={tableHeaders}
+          reduxFormChange={reduxFormChange}
+          handleDelete={deleteExpense}
+          formName={'addExpense'}
+        />
+        <h1>All Expenses</h1>
         <Table
           items={expenses}
           headers={tableHeaders}

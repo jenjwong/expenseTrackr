@@ -7,7 +7,6 @@ import submit from './Form/expenseFormHelpers';
 // meta fields allow for reuse of redux forms; labels are removed for screen readers
 
 const AddExpenseFunc = ({ handleSubmit, handleExpenseSubmit}) => {
-  console.log(handleExpenseSubmit)
   return (
     <form onSubmit={handleSubmit((fields) => submit(fields, handleExpenseSubmit))}>
       <Field name="date" label='Date' component={FormField} type="date"/>

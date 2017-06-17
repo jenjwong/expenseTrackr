@@ -6,9 +6,6 @@
   flex-direction: column;
 }
 
-
-
-
 @media (min-width: 70rem) {
   .splash--card {
     width: 30vw;

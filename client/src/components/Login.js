@@ -5,10 +5,8 @@ import submit from './Form/loginHelpers';
 
 class LoginFunc extends PureComponent {
   componentDidMount(){
-    // this.props.login({email: "b@b.com", password: "b"})
-    this.props.login({email: "l@l.com", password: "l"})
+    this.props.login({email: "a@a.com", password: "a"})
   }
-
 
   render() {
     let { handleSubmit, login } = this.props;
