@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-var ObjectId = mongoose.Types.ObjectId;
+const utils = require('../utils/helpers');
 
 const expenseSchema = new mongoose.Schema({
   name: {
@@ -36,13 +36,20 @@ const expenseSchema = new mongoose.Schema({
   }
 });
 
+
+expenseSchema.pre('save', async function(next) {
+  this.amount = utils.dollarsToCents(this.amount);
+  next();
+});
+
+
 expenseSchema.statics.getExpenseSum = function(start=Date.now(), end=Date.new(), userId='') {
   return this.aggregate([
     {
       $match: {
          $and: [
              { created: { '$gte': new Date(start), '$lt': new Date(end) } },
-             { author: ObjectId(userId)}
+             { author: mongoose.Types.ObjectId(userId)}
          ]
       }
     },
