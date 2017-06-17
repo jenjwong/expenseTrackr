@@ -15,3 +15,5 @@ private
 build
 
 package-lock.json
+
+server/variables.env

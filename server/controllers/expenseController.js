@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Expense = mongoose.model('Expense');
 const User = mongoose.model('User');
+const utils = require('../utils/helpers');
 
 const confirmOwner = (expense, user, admin=false) => {
   if (!admin && expense.author.toString() !== user._id.toString()) {
@@ -9,9 +10,9 @@ const confirmOwner = (expense, user, admin=false) => {
 };
 
 exports.createExpense = async (req, res) => {
-    console.log(req.body, 'CEATE EXPENSE')
   req.body.author = req.user._id;
   const expense = await (new Expense(req.body)).save();
+  expense.amount = utils.centsToDollars(expense.amount);
   res.send(expense)
 };
 

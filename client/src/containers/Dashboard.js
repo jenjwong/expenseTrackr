@@ -20,13 +20,12 @@ class Dashboard extends PureComponent {
     this.props.getExpenseReport();
   }
 
-
   render() {
 
     const {expenses, selectedExpense, selectExpense, logout, reduxFormChange, deleteExpense} = this.props;
 
 
-    let tableHeaders = ['Name', 'Description', 'Type', 'Amount'];
+    let tableHeaders = ['Name', 'Description', 'Type', 'Date', 'Amount'];
     return (
       <div className="dashboard--wrapper">
         <Navbar handleLogout={logout} isAdmin={false}/>

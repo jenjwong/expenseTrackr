@@ -16,6 +16,7 @@ export const createExpense = (data) => {
     axios.post('/api/v1/expenses',  data)
     .then((res) => {
       let expense = res.data;
+      
       dispatch({ type: ADD_EXPENSE, expense })
     })
     .catch((error) => console.error(`Error in createExpense action creator: ${error}`));

@@ -37,28 +37,37 @@ const expenseSchema = new mongoose.Schema({
 });
 
 
+// hooks to convert dollars/cents
+
 expenseSchema.pre('save', async function(next) {
   this.amount = utils.dollarsToCents(this.amount);
   next();
 });
 
+expenseSchema.post('init',  function() {
+  this.amount = utils.centsToDollars(this.amount);
+});
+
+
+// https://docs.mongodb.com/manual/reference/operator/aggregation/week/
+// Gets expenses by week
 
 expenseSchema.statics.getExpenseSum = function(start=Date.now(), end=Date.new(), userId='') {
   return this.aggregate([
     {
       $match: {
-         $and: [
-             { created: { '$gte': new Date(start), '$lt': new Date(end) } },
-             { author: mongoose.Types.ObjectId(userId)}
-         ]
+        $and: [
+          { created: { '$gte': new Date(start), '$lt': new Date(end) } },
+          { author: mongoose.Types.ObjectId(userId)}
+      ]
       }
     },
      {
-         $group: {
-             _id: {$week: '$created'},
-             total: {$sum: "$amount"}
-         }
-     }
+        $group: {
+          _id: {$week: '$created'},
+          total: {$sum: { $divide: [ '$amount', 100 ] } }
+        }
+      },
   ])
 };
 
