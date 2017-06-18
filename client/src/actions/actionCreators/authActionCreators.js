@@ -5,6 +5,7 @@ export const login = (data) => {
   return (dispatch) => {
     axios.post('/api/v1/login',  data)
     .then((res) => {
+      console.log(res, 'LOGIN RES')
       dispatch({ type: LOGIN_SUCCESS, bool: true })
     })
     .catch((error) => dispatch({ type: LOGIN_SUCCESS, bool: false }));
