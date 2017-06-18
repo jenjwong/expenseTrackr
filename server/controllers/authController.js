@@ -29,3 +29,7 @@ exports.confirmedPasswords = (req, res, next) => {
   }
   res.redirect('/login');
 };
+
+exports.isAdmin = async (req, res) => {
+  res.send(req.user.isAdmin)
+};

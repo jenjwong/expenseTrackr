@@ -1,4 +1,5 @@
 import moment from 'moment';
+import axios from 'axios';
 
 // helper to change all fields of redux-form (functionality doesn't exist in library)
 
@@ -13,4 +14,11 @@ export const populateFormFields = (reduxChangeCB, data, formName) => {
   })
 }
 
-export const centsToDollars = (val) => Math.floor(val / 100);
+export const isAuth = (handleData) => {
+  axios.get('/api/v1/login/admin')
+  .then((res) => {
+    let data = res.data;
+    handleData(data)
+  })
+  .catch((error) => console.error(`Error in isAuth helper function: ${error}`));
+};

@@ -55,7 +55,9 @@ exports.getExpenses = async (req, res) => {
   const countPromise = Expense.find(id).count();
 
   const [expenses, count] = await Promise.all([expensesPromise, countPromise]);
-  confirmOwner(expenses[0], req.user);
+  if (expenses.length > 0) {
+    confirmOwner(expenses[0], req.user);
+  }
   const pages = Math.ceil(count / limit);
   if (!expenses.length && skip) {
     res.redirect(`/expenses/page/${pages}`);

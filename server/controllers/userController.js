@@ -28,7 +28,3 @@ exports.register = async (req, res, next) => {
   await register(user, req.body.password);
   next(); // pass to authController.login
 };
-
-exports.userInfo = async (req, res) => {
-  res.send(req.user)
-};

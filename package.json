@@ -21,6 +21,7 @@
     "express": "^4.15.2",
     "express-session": "^1.15.3",
     "express-validator": "^3.1.2",
+    "md5": "^2.2.1",
     "mocha": "^3.4.2",
     "moment": "2.17.1",
     "mongoose": "^4.8.7",
@@ -30,6 +31,7 @@
     "passport": "^0.3.2",
     "passport-local": "1.0.0",
     "passport-local-mongoose": "^4.0.0",
+    "react-faux-dom": "^4.0.3",
     "redux-thunk": "^2.2.0",
     "validator": "^7.0.0"
   },

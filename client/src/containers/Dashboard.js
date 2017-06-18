@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Route, Link} from 'react-router-dom';
@@ -11,6 +11,8 @@ import Table from '../components/Table/Table';
 import ExpenseFormComponent from '../components/ExpenseForm';
 import moment from 'moment';
 import DatePicker from '../containers/DatePickerContainer';
+import ProtectedButton from '../components/ProtectedButton';
+
 
 import './Dashboard.css';
 
@@ -28,10 +30,11 @@ class Dashboard extends PureComponent {
     let tableHeaders = ['Name', 'Description', 'Type', 'Date', 'Amount'];
     return (
       <div className="dashboard--wrapper">
-        <Navbar handleLogout={logout} isAdmin={false}/>
+        <Navbar handleLogout={logout} isAdmin={false} handleAdmin={'handleAdmin'}/>
         <h1>Report</h1>
         <h1>Chart</h1>
         <h1>Number</h1>
+        <ProtectedButton />
         <div>
           <DatePicker />
 
