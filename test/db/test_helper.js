@@ -11,7 +11,7 @@ before((done) => {
   });
 });
 
-beforeEach( (done) => {
+beforeEach((done) => {
   const { users, expenses } = mongoose.connection.collections;
   users.drop(() => {
     expenses.drop(() => {
