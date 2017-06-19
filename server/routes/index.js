@@ -5,7 +5,7 @@ const expenseRouter = require('../routers/expense.js');
 // const reportRouter = require('../routers/report.js');
 const errorHandlers = require('../utils/errorHandlers');
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.use('/api/v1/login', loginRouter);
   app.use('/api/v1/logout', logoutRouter);
   app.use('/api/v1/register', registerRouter);
@@ -21,4 +21,4 @@ module.exports = function(app) {
 
   // production error handler
   app.use(errorHandlers.productionErrors);
-}
+};

@@ -15,7 +15,6 @@ export default class Dialogue extends React.Component {
                     isOpen={this.state.isOpen}
                     onClose={this.toggleDialog}
                     title="Modify Expense"
-
                 >
                     <div className="pt-dialog-body dialog">
                         {this.props.children}

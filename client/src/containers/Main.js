@@ -1,10 +1,8 @@
 import React from 'react';
-import {Route, Redirect, Switch} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Splash from './Splash';
-import Dashboard from './Dashboard';
 import DashboardWrapper from './DashboardWrapper';
-import Navbar from '../components/Navbar';
 
 const Main = (props) => {
   if (props.isLoggedIn) {
@@ -15,7 +13,7 @@ const Main = (props) => {
         <Redirect to="/dashboard" />
         <Route component={DashboardWrapper} />
       </Switch>
-    )
+    );
   }
   return (
     <Switch>
@@ -24,11 +22,11 @@ const Main = (props) => {
       <Redirect to="/login" />
       <Route component={Splash} />
     </Switch>
-  )
-}
+  );
+};
 
-const mapStateToProps = (state) => ({
-  isLoggedIn: state.isLoggedIn
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn,
 });
 
 export default connect(mapStateToProps)(Main);

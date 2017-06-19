@@ -1,84 +1,67 @@
 import axios from 'axios';
-import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT, GET_EXPENSES_ADMIN} from '../index';
-import {formatDateForServer} from '../../utils/helpers';
+import { GET_EXPENSES, ADD_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT, GET_EXPENSES_ADMIN } from '../index';
+import { formatDateForServer } from '../../utils/helpers';
 
-export const handleExpenseSubmit = (data) => {
-  console.log(data)
-  // handles timezones one day off error
-  return (dispatch) => {
-    // data.date = formatDateForServer(data.date);
-    data.id === '' ? dispatch(createExpense(data)) : dispatch(editExpense(data));
-  }
-}
-
-export const createExpense = (data) => {
-  return (dispatch) => {
-    axios.post('/api/v1/expenses',  data)
-    .then((res) => {
-      let expense = res.data;
-
-      dispatch({ type: ADD_EXPENSE, expense })
-    })
-    .catch((error) => console.error(`Error in createExpense action creator: ${error}`));
-  };
+export const handleExpenseSubmit = data => (dispatch) => {
+    // handles timezones to mitigate one day off error
+  data.date = formatDateForServer(data.date);
+  data.id === '' ? dispatch(createExpense(data)) : dispatch(editExpense(data));
 };
 
-export const editExpense = (data) => {
-  return (dispatch) => {
-    axios.put(`/api/v1/expenses/${data.id}/edit`,  data)
+export const createExpense = data => (dispatch) => {
+  axios.post('/api/v1/expenses', data)
     .then((res) => {
-      let expense = res.data;
-      dispatch({ type: EDIT_EXPENSE, expense })
+      const expense = res.data;
+
+      dispatch({ type: ADD_EXPENSE, expense });
     })
-    .catch((error) => console.error(`Error in createExpense action creator: ${error}`));
-  };
+    .catch(error => console.error(`Error in createExpense action creator: ${error}`));
 };
 
-export const deleteExpense = (data) => {
-  return (dispatch) => {
-    axios.delete(`/api/v1/expenses/${data._id}`,  data)
+export const editExpense = data => (dispatch) => {
+  axios.put(`/api/v1/expenses/${data.id}/edit`, data)
     .then((res) => {
-      let expense = res.data;
-      dispatch({ type: DELETE_EXPENSE, expense })
+      const expense = res.data;
+      dispatch({ type: EDIT_EXPENSE, expense });
     })
-    .catch((error) => console.error(`Error in createExpense action creator: ${error}`));
-  };
+    .catch(error => console.error(`Error in editExpense action creator: ${error}`));
 };
 
-export const getExpenses = (expenses) => {
-  return (dispatch) => {
-    axios.get('/api/v1/expenses/')
+export const deleteExpense = data => (dispatch) => {
+  axios.delete(`/api/v1/expenses/${data._id}`, data)
     .then((res) => {
-      let data = res.data;
-      dispatch({ type: GET_EXPENSES, data })
+      const expense = res.data;
+      dispatch({ type: DELETE_EXPENSE, expense });
     })
-    .catch((error) => console.error(`Error in getExpenses action creator: ${error}`));
-  };
+    .catch(error => console.error(`Error in deleteExpense action creator: ${error}`));
 };
 
-
-// TODO: nested date refactor
-export const getExpensesAdmin = (expenses) => {
-  return (dispatch) => {
-    axios.get('/api/v1/expenses/admin')
+export const getExpenses = expenses => (dispatch) => {
+  axios.get('/api/v1/expenses/')
     .then((res) => {
-      let expenses = res.data.expenses;
-
-      dispatch({ type: GET_EXPENSES_ADMIN, expenses })
+      const data = res.data;
+      dispatch({ type: GET_EXPENSES, data });
     })
-    .catch((error) => console.error(`Error in getExpensesAdmin action creator: ${error}`));
-  };
+    .catch(error => console.error(`Error in getExpenses action creator: ${error}`));
 };
 
-export const getExpenseReport = (start, end) => {
-  console.log('THIS IS ACTION CONTROLLER REPORT')
-  return (dispatch) => {
-    axios.get(`/api/v1/expenses/report/${start}/${end}`)
+export const getExpensesAdmin = expenses => (dispatch) => {
+  axios.get('/api/v1/expenses/admin')
     .then((res) => {
-      let report = res.data;
-      console.log(report, 'this is report')
-      dispatch({ type: GET_REPORT, report })
+      const expenses = res.data.expenses;
+
+      dispatch({ type: GET_EXPENSES_ADMIN, expenses });
     })
-    .catch((error) => console.error(`Error in getExpenses action creator: ${error}`));
-  };
+    .catch(error => console.error(`Error in getExpensesAdmin action creator: ${error}`));
+};
+
+export const getExpenseReport = (start, end) => (dispatch) => {
+  axios.get(`/api/v1/report/${start}/${end}`)
+  // axios.get(`/api/v1/expenses/report/${start}/${end}`)
+    .then((res) => {
+      const report = res.data;
+      console.log(report, 'this is report');
+      dispatch({ type: GET_REPORT, report });
+    })
+    .catch(error => console.error(`Error in getExpenses action creator: ${error}`));
 };

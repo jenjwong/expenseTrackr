@@ -4,26 +4,25 @@ import FormField from './Form/FormField';
 import submit from './Form/loginHelpers';
 
 class LoginFunc extends PureComponent {
-  componentDidMount(){
-    // this.props.login({email: "a@a.com", password: "a"})
+  componentDidMount() {
     // this.props.login({email: "user@user.com", password: "u"})
-    this.props.login({email: "admin@admin.com", password: "a"})
+    this.props.login({ email: 'admin@admin.com', password: 'a' });
   }
 
   render() {
-    let { handleSubmit, login } = this.props;
+    const { handleSubmit, login } = this.props;
     return (
-      <form onSubmit={handleSubmit((fields) => submit(fields, login))}>
-        <Field name="email" label='Email' component={FormField} type="email"/>
-        <Field name="password" label='Password' component={FormField} type="password"/>
+      <form onSubmit={handleSubmit(fields => submit(fields, login))}>
+        <Field name="email" label="Email" component={FormField} type="email" />
+        <Field name="password" label="Password" component={FormField} type="password" />
         <button className="pt-button pt-intent-primary submit-button" type="submit">Submit</button>
       </form>
-    )
+    );
   }
 }
 
 const Login = reduxForm({
-  form: 'log'
+  form: 'log',
 })(LoginFunc);
 
 export default Login;

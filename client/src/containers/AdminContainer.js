@@ -1,16 +1,9 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {Route, Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/actionCreators';
-import Navbar from '../components/Navbar';
-import Dialogue from '../components/Dialogue';
-import ExpenseForm from '../containers/ExpenseFormContainer';
 import Table from '../components/Table/Table';
-import ExpenseFormComponent from '../components/ExpenseForm';
-import moment from 'moment';
-import DatePicker from '../containers/DatePickerContainer';
 
 import './Dashboard.css';
 
@@ -20,8 +13,7 @@ class Dashboard extends PureComponent {
   }
 
   render() {
-
-    const {expenses, logout, reduxFormChange, deleteExpense, adminExpenses} = this.props;
+    const { reduxFormChange, deleteExpense, adminExpenses } = this.props;
 
     const tableHeaders = ['Name', 'Author', 'Description', 'Type', 'Date', 'Amount'];
     return (
@@ -36,12 +28,12 @@ class Dashboard extends PureComponent {
           formName={'addExpense'}
         />
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => ({ adminExpenses: state.adminExpenses });
+const mapStateToProps = state => ({ adminExpenses: state.adminExpenses });
 
-const mapDispatchToProps = (dispatch) => (bindActionCreators(actionCreators, dispatch));
+const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -1,7 +1,10 @@
 import { SubmissionError } from 'redux-form';
+import { sanitize } from '../../utils/helpers';
 
-const submit = ({ name='', email='', password='' }, register) => {
-  let error = {};
+const submit = (props, register) => {
+  const sanitizedProps = sanitize(props);
+  const { name = '', email = '', password = '' } = sanitizedProps;
+  const error = {};
   let isError = false;
 
   if (name.trim() === '') {
@@ -22,8 +25,8 @@ const submit = ({ name='', email='', password='' }, register) => {
   if (isError) {
     throw new SubmissionError(error);
   } else {
-    register({name, email, password});
+    register({ name, email, password });
   }
-}
+};
 
 export default submit;

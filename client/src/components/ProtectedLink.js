@@ -5,7 +5,9 @@ import {isAuth} from '../utils/helpers';
 const DEFAULT_STATE = {isAuth: false}
 
 export default class ProtectedLink extends PureComponent {
+
   state = DEFAULT_STATE;
+
   componentDidMount(){
     isAuth(this.handleResponse)
   }

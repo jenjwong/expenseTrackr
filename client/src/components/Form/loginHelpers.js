@@ -1,7 +1,10 @@
 import { SubmissionError } from 'redux-form';
+import { sanitize } from '../../utils/helpers';
 
-const submit = ({ email='', password="" }, login) => {
-  let error = {};
+const submit = (props, login) => {
+  const sanitizedProps = sanitize(props);
+  const { email = '', password = '' } = sanitizedProps;
+  const error = {};
   let isError = false;
 
   if (email.trim() === '') {
@@ -18,7 +21,7 @@ const submit = ({ email='', password="" }, login) => {
     throw new SubmissionError(error);
     return false;
   }
-  login({email, password});
-}
+  login({ email, password });
+};
 
 export default submit;

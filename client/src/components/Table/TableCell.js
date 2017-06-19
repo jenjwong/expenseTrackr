@@ -1,6 +1,6 @@
 import React from 'react';
-import {formatVal} from './TableHelpers'; 
+import { formatVal } from './TableHelpers';
 
-const TableCell = ({item}) => <td>{formatVal(item)}</td>
+const TableCell = ({ item }) => <td>{formatVal(item)}</td>;
 
 export default TableCell;
