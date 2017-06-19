@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { GET_EXPENSES, ADD_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT, GET_EXPENSES_ADMIN } from '../index';
 import { formatDateForServer } from '../../utils/helpers';
+// import { reset } from 'redux-form';
+import { reduxFormReset } from './utilsActionCreators';
 
 export const handleExpenseSubmit = data => (dispatch) => {
     // handles timezones to mitigate one day off error
@@ -12,8 +14,8 @@ export const createExpense = data => (dispatch) => {
   axios.post('/api/v1/expenses', data)
     .then((res) => {
       const expense = res.data;
-
       dispatch({ type: ADD_EXPENSE, expense });
+      dispatch(reduxFormReset('addExpense'));
     })
     .catch(error => console.error(`Error in createExpense action creator: ${error}`));
 };
@@ -23,6 +25,7 @@ export const editExpense = data => (dispatch) => {
     .then((res) => {
       const expense = res.data;
       dispatch({ type: EDIT_EXPENSE, expense });
+      dispatch(reduxFormReset('addExpense'));
     })
     .catch(error => console.error(`Error in editExpense action creator: ${error}`));
 };
