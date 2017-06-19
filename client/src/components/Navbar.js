@@ -16,11 +16,8 @@ const Navbar = (props) => {
           <ProtectedLink protectedPath="/admin" />
         </button>
          <button className="pt-button pt-minimal pt-icon-home"><Link to="/dashboard">Home</Link></button>
-        <button onClick={handleClick} className="pt-button pt-minimal pt-icon-document">Logout</button>
-        <span className="pt-navbar-divider"></span>
-        <button className="pt-button pt-minimal pt-icon-user"></button>
-        <button className="pt-button pt-minimal pt-icon-notifications"></button>
-        <button className="pt-button pt-minimal pt-icon-cog"></button>
+         <span className="pt-navbar-divider"></span>
+        <button onClick={handleClick} className="pt-button pt-minimal pt-icon-cog">Logout</button>
       </div>
     </nav>
   )

@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 // import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -12,11 +12,12 @@ import ExpenseFormComponent from '../components/ExpenseForm';
 import moment from 'moment';
 import DatePicker from '../containers/DatePickerContainer';
 import DisplayValue from '../components/DisplayValue';
+import {formatVal} from '../utils/helpers';
 
 
 import './Dashboard.css';
 
-class Dashboard extends PureComponent {
+class Dashboard extends Component {
   componentDidMount() {
     this.props.getExpenses();
     this.props.getExpenseReport();
@@ -25,15 +26,18 @@ class Dashboard extends PureComponent {
   render() {
 
     const {expenses, logout, reduxFormChange, deleteExpense, expenseReport} = this.props;
+    console.log('THIS IS DASH', expenseReport)
 
 
     let tableHeaders = ['Name', 'Description', 'Type', 'Date', 'Amount'];
     return (
       <div className="dashboard--wrapper">
-        <h1>Report</h1>
+        <h1>Report  </h1>
+
         <div>
-          <DatePicker />
-          <DisplayValue val={expenseReport}/>
+          <DatePicker expenseReport={expenseReport}/>
+            <DisplayValue val={expenseReport.total} format={formatVal}/>
+
         </div>
 
         <h1>Add Expense</h1>
@@ -54,7 +58,8 @@ class Dashboard extends PureComponent {
 
 const mapStateToProps = (state) => ({
   day: state.day,
-  expenses: state.expenses
+  expenses: state.expenses,
+  expenseReport: state.expenseReport
 });
 
 const mapDispatchToProps = (dispatch) => (

@@ -1,12 +1,13 @@
 import moment from 'moment';
 import axios from 'axios';
+import numeral from 'numeral';
 
-// helper to change all fields of redux-form (functionality doesn't exist in library)
 
 export const formatDateForServer = (timestamp) => moment(timestamp).format('MMM DD YYYY')
 
 export const formatDateForForms =(timestamp) => moment(timestamp).format('YYYY-MM-DD')
 
+// helper to change all fields of redux-form (functionality doesn't exist in library)
 export const populateFormFields = (reduxChangeCB, data, formName) => {
   Object.keys(data).forEach(field => {
     let val = field === 'date' ? formatDateForForms(data[field]) : data[field];
@@ -22,3 +23,9 @@ export const isAuth = (handleData) => {
   })
   .catch((error) => console.error(`Error in isAuth helper function: ${error}`));
 };
+
+export const formatVal = (input) => {
+  let fVal = input.toString();
+  return moment(fVal).isValid() && fVal.includes('-') ? moment(fVal).format('l') :
+  parseInt(fVal) !== parseInt(fVal) || fVal.match(/[a-zA-Z]/) ? fVal : numeral(fVal).format('$0,0.00');
+}
