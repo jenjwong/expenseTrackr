@@ -10,7 +10,6 @@
     "@blueprintjs/core": "^1.20.0",
     "@blueprintjs/datetime": "^1.17.0",
     "axios": "^0.16.2",
-    "classnames": "^2.2.5",
     "dompurify": "0.8.5",
     "moment": "^2.18.1",
     "numeral": "^2.0.6",
