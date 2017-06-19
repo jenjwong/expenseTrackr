@@ -1,0 +1,33 @@
+.datepicker--wrapper {
+  display: flex;
+  flex: 1 1 60%;
+  padding-left: 2%;
+  overflow: hidden;
+}
+
+.datepicker {
+  flex: 1;
+}
+
+.datepicker-start {
+  flex: 1;
+  padding-top: 4%;
+  text-align: center;
+}
+.datepicker-end {
+  flex: 1;
+  padding-top: 4%;
+  text-align: center;
+}
+
+.datepicker-call-to-action {
+  font-size: 1.2vw;
+  margin-left: 5%;
+  text-align: center;
+  width: 32vw;
+  color: #0E5A8A;
+}
+
+.icon-select {
+  margin-right: 2%;
+}

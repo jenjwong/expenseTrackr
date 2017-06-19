@@ -13,7 +13,7 @@ const Navbar = (props) => {
         <div className="pt-navbar-heading pt-icon-banl-account pig-icon" />
       </div>
       <div className="pt-navbar-group pt-align-right">
-        <div className="pt-button pt-minimal pt-icon-document">
+        <div className="pt-button pt-minimal">
           <ProtectedLink protectedPath="/admin" />
         </div>
         <div className="pt-button pt-minimal pt-icon-home">

@@ -18,8 +18,7 @@ class Dashboard extends PureComponent {
     const tableHeaders = ['Name', 'Author', 'Description', 'Type', 'Date', 'Amount'];
     return (
       <div className="dashboard--wrapper">
-        <h3>Admin View</h3>
-        <h1>All Expenses</h1>
+        <h1>Admin Panel: All Expenses</h1>
         <Table
           items={adminExpenses}
           headers={tableHeaders}

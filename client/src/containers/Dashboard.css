@@ -1,16 +1,21 @@
-.dashboard--wrapper {
+.dashboard-wrapper {
   height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  padding-right: 2%;
+  box-sizing: border-box;
 }
 
-@media (min-width: 70rem) {
-  .splash--card {
-    width: 30vw;
-    height: 45vh;
-    background-color: #202B33;
-    opacity: .6;
-  }
+.dashboard--report-wrapper {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 37%;
+}
+
+.expense-form--content--wrapper {
+  margin-left: 2.5%;
 }

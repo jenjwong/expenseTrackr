@@ -22,11 +22,11 @@ class Dashboard extends Component {
 
     const tableHeaders = ['Name', 'Description', 'Type', 'Date', 'Amount'];
     return (
-      <div className="dashboard--wrapper">
-        <h1>Report</h1>
-        <div>
-          <DatePicker expenseReport={expenseReport} />
-          <DisplayValue val={expenseReport.total} format={formatVal} />
+      <div className="dashboard-wrapper">
+        <h1 className="dashboard--report-header">Report</h1>
+        <div className="dashboard--report-wrapper">
+          <DatePicker className="dashboard--report-datepicker" expenseReport={expenseReport} />
+          <DisplayValue className="dashboard--report-display-value" val={expenseReport.total} format={formatVal} text="You Spent:" />
         </div>
         <h1>Add Expense</h1>
         <ExpenseForm />

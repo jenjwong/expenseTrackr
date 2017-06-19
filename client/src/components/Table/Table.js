@@ -9,7 +9,7 @@ const Table = ({ items = [], headers, reduxFormChange, handleDelete }) => (
   <table className="expense-table pt-table pt-striped pt-bordered pt-interactive" >
     <TableHeader headers={headers} />
     <tbody>
-      {items.map(item =>
+      {items.map((item, i) =>
         <TableRowEntry
           key={`${item._id}-${item.created}-${item.name}-${item.amount}`}
           item={item}
