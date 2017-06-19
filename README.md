@@ -12,14 +12,23 @@ Generate personalized big-data about spending habits by manually entering expens
 #### Testing
 * Enzyme, Jest, Mocha, Codecept.js
 
+---
+## Expense Trackr Dash:
+![expenseTrackr](https://github.com/jenjwong/expenseTrackr/blob/development/client/public/etrackr.png)
+---
 
 ## Getting Started
 
-To get a copy of the project up and running on your local machine clone the repository and from the root directory run npm install-packages. Start the development environment by running mongod to start the mongo daemon npm and in another window from the root directory run:
+To get a copy of the project up and running on your local machine clone the repository and from the root directory execute:
+```
+npm run install-packages
+```
+
+Start the development environment by running mongod to boot up the mongo daemon and in another window from the root directory run:
 ```
 npm run dev
 ```
- This command starts the webpack dev-server, the express server. Rename server/variables.env.examples to variables.env and configure your settings.
+ This command starts the webpack dev-server and the express server. Rename server/variables.env.examples to variables.env and configure your settings.
 
 Authenticate admin users in the mongo shell by running:
 ```
@@ -30,15 +39,15 @@ db.users.updateOne( { "name" : "admin" },  {$set:{"isAdmin" :  true}} )
 To streamline Front-End development Expense Trackr uses:
 
 * [Facebook's Create React App](https://github.com/facebookincubator/create-react-app)
-* [Blueprint](http://blueprintjs.com/), Palantir's [new React-based UI toolkit](https://medium.com/@palantir/scaling-product-design-with-blueprint-25492827bb4a) is used for elegant consistent styling of UI and has a handful of built-in accessibility features.
-* Redux-Forms is used to minimize form boiler plate code
-*  Moment.js are Numeral.js for consistent styling of times and numbers
+* [Blueprint](http://blueprintjs.com/), Palantir's [new React-based UI toolkit](https://medium.com/@palantir/scaling-product-design-with-blueprint-25492827bb4a)for styling UI and has a handful of built-in accessibility features.
+* Redux-Forms to minimize form boiler-plate code
+*  Moment.js and Numeral.js for consistent styling of times and numbers
 
 ### Server-Side Technologies
 Expense Trackr uses Express and MongoDB server-side. Flow of control is implemented using ES6 async await.
 
 ### Database Design
-Expense Trackr's database has a User and Expense model and uses aggregation for complex queries. Expense Trackr implements this relationship with by placing User_id as a foreign key on Expenses, allowing for future feature development of shared expenses.
+Expense Trackr's database has a User and Expense model and uses aggregation for complex queries. Expense Trackr implements this relationship by placing User_id as a foreign key on Expenses, allowing for future feature development of shared expenses.
 
 ### API Design
 Expense Trackr uses REST-APIs. [Click here for a list of semantically named endpoints](https://github.com/jenjwong/expenseTrackr/blob/development/server/routes/index.js)
@@ -50,16 +59,20 @@ Expense Trackr uses React-Router 4. Auth is handled on the backend and API's are
 
 Expense Trackr implements unit and end-to-end testing with Mocha, Enzyme, Jest, and Codecept.js.
 
-Codecept.js, a JavaScript Selenium wrapper is used for end-to-end testing. Codecept.js stores pictures of browser state during failed tests in endToend.output. With your server and mongo deamon started run:
-
+Codecept.js, a JavaScript Selenium wrapper, is used for end-to-end testing. Codecept.js stores pictures of browser state during failed tests in endToend.output. With your dev environment running execute:
+```
+npm selenium-start
+```
+and
 ```
 npm run headless-tests
 ```
+This will start the selenium server and run your Codecept tests.
 
 Mongo models and operations are tested with Mocha and stub-data.
 ```
 npm run test
-``` 
+```
 
 ## License
 
