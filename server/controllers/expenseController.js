@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const Expense = mongoose.model('Expense');
-const User = mongoose.model('User');
 const utils = require('../utils/helpers');
 
-const confirmOwner = (expense, user, isAdmin=false) => {
+const Expense = mongoose.model('Expense');
+
+const confirmOwner = (expense, user, isAdmin = false) => {
   if (!isAdmin && expense.author.toString() !== user._id.toString()) {
     throw Error('You must own a expense in order to edit it!');
   }
@@ -13,43 +13,28 @@ exports.createExpense = async (req, res) => {
   req.body.author = req.user._id;
   const expense = await (new Expense(req.body)).save();
   expense.amount = utils.centsToDollars(expense.amount);
-  res.send(expense)
+  res.send(expense);
 };
 
 exports.getExpensesAdmin = async (req, res) => {
   const page = req.params.page || 1;
-  const limit = 300;
-  const skip = (page * limit) - limit;
-  const id = req.user.isAdmin ?  undefined : {'author': `${req.user._id}`};
+  const id = req.user.isAdmin ? undefined : { author: `${req.user._id}` };
   const expensesPromise = Expense
     .find(id)
-    .skip(skip)
-    .limit(limit)
     .sort({ created: 'desc' });
 
   const countPromise = Expense.find(id).count();
 
   const [expenses, count] = await Promise.all([expensesPromise, countPromise]);
   confirmOwner(expenses[0], req.user, req.user.isAdmin);
-  const pages = Math.ceil(count / limit);
-  if (!expenses.length && skip) {
-    res.redirect(`/expenses/page/${pages}`);
-    return;
-  }
-  res.send({expenses, page, pages, count});
+  res.send({ expenses });
 };
 
 exports.getExpenses = async (req, res) => {
-  console.log(req.body, 'GET EXPENSE')
-  const page = req.params.page || 1;
-  const limit = 300;
-  const skip = (page * limit) - limit;
-  const id = {'author': `${req.user._id}`}
+  const id = { author: `${req.user._id}` };
 
   const expensesPromise = Expense
     .find(id)
-    .skip(skip)
-    .limit(limit)
     .sort({ created: 'desc' });
 
   const countPromise = Expense.find(id).count();
@@ -58,18 +43,13 @@ exports.getExpenses = async (req, res) => {
   if (expenses.length > 0) {
     confirmOwner(expenses[0], req.user);
   }
-  const pages = Math.ceil(count / limit);
-  if (!expenses.length && skip) {
-    res.redirect(`/expenses/page/${pages}`);
-    return;
-  }
-  res.send({expenses, page, pages, count});
+  res.send({ expenses });
 };
 
 exports.deleteExpense = async (req, res) => {
   const expense = await Expense.findOne({ _id: req.params.id });
   confirmOwner(expense, req.user);
-  expense.remove()
+  expense.remove();
   res.send(expense);
 };
 
@@ -83,17 +63,17 @@ exports.isOwner = async (req, res, next) => {
 exports.editExpense = async (req, res) => {
   const expense = await Expense.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true, // return the new expense instead of the old one
-    runValidators: true
+    runValidators: true,
   }).exec();
-  res.send(expense)
+  res.send(expense);
 };
 
 // default by week, but allow for any period of time
 exports.getExpenseReport = async (req, res) => {
-  let userId = req.user;
+  const userId = req.user;
   const sumPromise = Expense.getExpenseSum(req.params.start, req.params.end, req.user.id);
   const [sumForRange] = await Promise.all([sumPromise]);
-  
-  let response = sumForRange.length > 0 ? sumForRange[0] : '';
+
+  const response = sumForRange.length > 0 ? sumForRange[0] : '';
   res.send(response);
 };

@@ -1,9 +1,7 @@
 // async await error handling
 
-exports.catchErrors = (fn) => {
-  return function(req, res, next) {
-    return fn(req, res, next).catch(next);
-  };
+exports.catchErrors = fn => function (req, res, next) {
+  return fn(req, res, next).catch(next);
 };
 
 
@@ -22,7 +20,7 @@ exports.developmentErrors = (err, req, res, next) => {
   const errorDetails = {
     message: err.message,
     status: err.status,
-    stackHighlighted: err.stack.replace(/[a-z_-\d]+.js:\d+:\d+/gi, '<mark>$&</mark>')
+    stackHighlighted: err.stack.replace(/[a-z_-\d]+.js:\d+:\d+/gi, '<mark>$&</mark>'),
   };
   res.status(err.status || 500);
   res.send(errorDetails);
@@ -35,6 +33,6 @@ exports.productionErrors = (err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error: {},
   });
 };

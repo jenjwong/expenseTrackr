@@ -13,7 +13,7 @@ const errorHandlers = require('../utils/errorHandlers');
 require('./handlers/passport');
 
 
-module.exports = function(app, express) {
+module.exports = function (app, express) {
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +24,7 @@ module.exports = function(app, express) {
     key: process.env.KEY,
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   }));
   app.use(passport.initialize());
   app.use(passport.session());
@@ -34,4 +34,4 @@ module.exports = function(app, express) {
     req.login = promisify(req.login, req);
     next();
   });
-}
+};

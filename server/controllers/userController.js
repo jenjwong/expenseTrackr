@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
 const promisify = require('es6-promisify');
 const { catchErrors } = require('../utils/errorHandlers');
+
+const User = mongoose.model('User');
 
 exports.validateRegister = (req, res, next) => {
   req.sanitizeBody('name');
@@ -10,20 +11,21 @@ exports.validateRegister = (req, res, next) => {
   req.sanitizeBody('email').normalizeEmail({
     gmail_remove_dots: false,
     remove_extension: false,
-    gmail_remove_subaddress: false
+    gmail_remove_subaddress: false,
   });
-  req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
+
+  req.checkBody('password', 'Password Cannot be Blank').notEmpty();
 
   const errors = req.validationErrors();
   if (errors) {
     res.send(errors);
     return;
   }
-  next(); // there were no errors!
+  next();
 };
 
 exports.register = async (req, res, next) => {
-  const user = new User({ email: req.body.email, name: req.body.name});
+  const user = new User({ email: req.body.email, name: req.body.name });
   const register = promisify(User.register, User);
   await register(user, req.body.password);
   next(); // pass to authController.login

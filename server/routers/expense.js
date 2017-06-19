@@ -5,24 +5,23 @@ const { catchErrors } = require('../utils/errorHandlers');
 expenseRouter.get('/', catchErrors(expenseController.getExpenses));
 
 expenseRouter.post('/',
-catchErrors(expenseController.createExpense)
+catchErrors(expenseController.createExpense),
 );
 
 expenseRouter.put('/:id/edit',
 catchErrors(expenseController.isOwner),
-catchErrors(expenseController.editExpense)
+catchErrors(expenseController.editExpense),
 );
 
 expenseRouter.delete('/:id',
-  catchErrors(expenseController.deleteExpense)
+  catchErrors(expenseController.deleteExpense),
 );
 
-expenseRouter.get('/report/:start/:end', catchErrors(expenseController.getExpenseReport));
 expenseRouter.get('/admin', catchErrors(expenseController.getExpensesAdmin));
 expenseRouter.get('/page/:page', catchErrors(expenseController.getExpenses));
 
 expenseRouter.post('/seed',
-  catchErrors(expenseController.createExpenseDummyData)
+  catchErrors(expenseController.createExpenseDummyData),
 );
 
 module.exports = expenseRouter;

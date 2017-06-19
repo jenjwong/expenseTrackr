@@ -1,20 +1,6 @@
-// const reportRouter = require('express').Router();
-// const authController = require('../controllers/authController.js');
-// const { catchErrors } = require('../utils/errorHandlers');
-// const expenseController = require('../controllers/expenseController.js');
-//
-//
-// reportRouter.get('/', catchErrors(expenseController.getExpenses));
-//
-// // TODO: implement pagination
-// // reportRouter.get('/page/:page', catchErrors(reportController.getExpenses));
-//
-// // reportRouter.get('/getExpenseSum',
-// //   catchErrors(expenseController.getExpenseSum)
-// // );
-//
-// expenseRouter.get('/:start/end',
-// catchErrors(expenseController.getExpenseReport)
-// );
-//
-// module.exports = reportRouter;
+const reportRouter = require('express').Router();
+const { catchErrors } = require('../utils/errorHandlers');
+const expenseController = require('../controllers/expenseController.js');
+
+reportRouter.get('/:start/:end', catchErrors(expenseController.getExpenseReport));
+module.exports = reportRouter;
