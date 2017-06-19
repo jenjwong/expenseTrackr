@@ -15,7 +15,11 @@ Generate personalized big-data about spending habits by manually entering expens
 
 ## Getting Started
 
-To get a copy of the project up and running on your local machine clone the repository and from the root directory run npm install-packages. Start the development environment by running mongod to start the mongo daemon npm and in another window run dev from the root directory. This command starts the webpack dev-server, the express server. Rename server/variables.env.examples to variables.env and cofigure your settings. 
+To get a copy of the project up and running on your local machine clone the repository and from the root directory run npm install-packages. Start the development environment by running mongod to start the mongo daemon npm and in another window from the root directory run:
+```
+npm run dev
+```
+ This command starts the webpack dev-server, the express server. Rename server/variables.env.examples to variables.env and configure your settings.
 
 Authenticate admin users in the mongo shell by running:
 ```
@@ -28,7 +32,7 @@ To streamline Front-End development Expense Trackr uses:
 * [Facebook's Create React App](https://github.com/facebookincubator/create-react-app)
 * [Blueprint](http://blueprintjs.com/), Palantir's [new React-based UI toolkit](https://medium.com/@palantir/scaling-product-design-with-blueprint-25492827bb4a) is used for elegant consistent styling of UI and has a handful of built-in accessibility features.
 * Redux-Forms is used to minimize form boiler plate code
-*  Moment.js are Numeral.js for consisten styling of times and numbers
+*  Moment.js are Numeral.js for consistent styling of times and numbers
 
 ### Server-Side Technologies
 Expense Trackr uses Express and MongoDB server-side. Flow of control is implemented using ES6 async await.
@@ -52,29 +56,10 @@ Codecept.js, a JavaScript Selenium wrapper is used for end-to-end testing. Codec
 npm run headless-tests
 ```
 
-React components are testsed with [Jest](https://facebook.github.io/jest/) with [Enzyme](https://github.com/airbnb/enzyme). Enzyme allows shallow rendering of components, making it easy to isolate tests. Shallow rendering in Enzyme renders components one level deep so a component can be tested in isolation of its child components.
-
-To execute the test suite run:
+Mongo models and operations are tested with Mocha and stub-data.
 ```
 npm run test
-```
-
-Static components are tested using Jest Snapshots. Snapshot tests render HTML markup and compare the current version to the previous version. The first time you add a Snapshot test create a baseline for comparison by running:
-
-```
-npm run test-update
-```
-
-Jest caches your Babel environment. If you update your Babel environment to clear the cache run:
-
-```
-jest no-cacheless
-```
-Mongo models and operations are tested with Mocha and stub-data.
-
-## Redux Architecture
-Expense Trackr manages state with Redux. The store is designed like a relational database to minimize duplication of data. Expenses are stored in a centralized dictionary and are accessed through arrays that track look-up indexes.
-
+``` 
 
 ## License
 
