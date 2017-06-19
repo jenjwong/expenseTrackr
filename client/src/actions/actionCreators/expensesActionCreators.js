@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { GET_EXPENSES, ADD_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT, GET_EXPENSES_ADMIN } from '../index';
 import { formatDateForServer } from '../../utils/helpers';
-// import { reset } from 'redux-form';
 import { reduxFormReset } from './utilsActionCreators';
 
 export const handleExpenseSubmit = data => (dispatch) => {
@@ -63,7 +62,6 @@ export const getExpenseReport = (start, end) => (dispatch) => {
   // axios.get(`/api/v1/expenses/report/${start}/${end}`)
     .then((res) => {
       const report = res.data;
-      console.log(report, 'this is report');
       dispatch({ type: GET_REPORT, report });
     })
     .catch(error => console.error(`Error in getExpenses action creator: ${error}`));

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const utils = require('../utils/helpers');
+const { centsToDollars } = require('../utils/helpers');
 
 const Expense = mongoose.model('Expense');
 
@@ -9,10 +9,11 @@ const confirmOwner = (expense, user, isAdmin = false) => {
   }
 };
 
+// amount saved in database returns; fn converts cents to dollars
 exports.createExpense = async (req, res) => {
   req.body.author = req.user._id;
   const expense = await (new Expense(req.body)).save();
-  expense.amount = utils.centsToDollars(expense.amount);
+  expense.amount = centsToDollars(expense.amount);
   res.send(expense);
 };
 
@@ -60,7 +61,9 @@ exports.isOwner = async (req, res, next) => {
   next();
 };
 
+// mongoose doesn't have update hooks; fn converts dollars to cents
 exports.editExpense = async (req, res) => {
+  req.body.amount = dollarsToCents(req.body.amount);
   const expense = await Expense.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true, // return the new expense instead of the old one
     runValidators: true,

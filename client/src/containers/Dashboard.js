@@ -14,6 +14,7 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.getExpenses();
     this.props.getExpenseReport();
+    this.props.reduxFormReset('addExpense');
   }
 
   render() {
