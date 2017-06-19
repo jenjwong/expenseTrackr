@@ -1,12 +1,10 @@
-
-
 # Expense Trackr
 Generate personalized big-data about spending habits by manually entering expenses!
 
 ### Technologies
 
 #### Client
-* ES6, React, React-Router, Redux, Redux-Thunk, Redux-Forms, Blueprint, Flexbox
+* ES6, React, React-Router, Redux, Redux-Thunk, Redux-Forms, Blueprint, Flexbox, Moment.js, Numeral.js
 
 #### Server
 * Node.js, Express, Express-Sessions, Passport, MongoDB, Mongoose, Concurrently
@@ -17,27 +15,32 @@ Generate personalized big-data about spending habits by manually entering expens
 
 ## Getting Started
 
-To get a copy of the project up and running on your local machine clone the repository and from the root directory run npm install-packages. Start the development environment by running npm run dev from the root directory. This command starts the webpack dev-server, the express server and starts the mongo daemon.
+To get a copy of the project up and running on your local machine clone the repository and from the root directory run npm install-packages. Start the development environment by running mongod to start the mongo daemon npm and in another window run dev from the root directory. This command starts the webpack dev-server, the express server. Rename server/variables.env.examples to variables.env and cofigure your settings. 
+
+Authenticate admin users in the mongo shell by running:
+```
+db.users.updateOne( { "name" : "admin" },  {$set:{"isAdmin" :  true}} )
+```
 
 ### Client-Side Technologies
-To streamline Front-End developement Expense Trackr uses:
+To streamline Front-End development Expense Trackr uses:
 
 * [Facebook's Create React App](https://github.com/facebookincubator/create-react-app)
 * [Blueprint](http://blueprintjs.com/), Palantir's [new React-based UI toolkit](https://medium.com/@palantir/scaling-product-design-with-blueprint-25492827bb4a) is used for elegant consistent styling of UI and has a handful of built-in accessibility features.
 * Redux-Forms is used to minimize form boiler plate code
+*  Moment.js are Numeral.js for consisten styling of times and numbers
 
 ### Server-Side Technologies
-Expense Trackr uses Express and MongoDB server-side.
-Flow of control is implemented using ES6 async await; error-handling is managed with middleware and higher order components.
+Expense Trackr uses Express and MongoDB server-side. Flow of control is implemented using ES6 async await.
 
 ### Database Design
-Expense Trackr's database has a User and Expense model and uses agregation for complex queries. Expense Trackr implements this relationship with by placing User_id as a foreign key on Expenses, allowing for future feature developemnt of shared expenses.
+Expense Trackr's database has a User and Expense model and uses aggregation for complex queries. Expense Trackr implements this relationship with by placing User_id as a foreign key on Expenses, allowing for future feature development of shared expenses.
 
 ### API Design
-Expense Trackr uses REST-APIs. Click here for complete documentation (comming soon!)
+Expense Trackr uses REST-APIs. [Click here for a list of semantically named endpoints](https://github.com/jenjwong/expenseTrackr/blob/development/server/routes/index.js)
 
 ### Routing
-Expense Trackr uses React-Router 4. Auth is handled on the backend and API's are protected server-side. The client routes users who are not signed-in to login page and API endpoints only accept calls from logged-in users.
+Expense Trackr uses React-Router 4. Auth is handled on the backend and API's are protected server-side. The client routes unauthenticated users to the login page and API endpoints only accept calls from logged-in users.
 
 ## Tests
 
