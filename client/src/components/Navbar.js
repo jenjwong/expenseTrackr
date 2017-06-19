@@ -1,7 +1,10 @@
 import React from 'react';
 import './Navbar.css';
+import ProtectedLink from './ProtectedLink';
+import {Link} from 'react-router-dom';
 
-const Navbar = ({handleLogout, isAdmin}) => {
+const Navbar = (props) => {
+  const {handleLogout, isAdmin, history} = props;
   const handleClick = () => handleLogout();
   return (
     <nav className="pt-navbar pt-dark navigation">
@@ -9,10 +12,11 @@ const Navbar = ({handleLogout, isAdmin}) => {
         <div className="pt-navbar-heading pt-icon-banl-account pig-icon"></div>
       </div>
       <div className="pt-navbar-group pt-align-right">
-        {isAdmin && <button className="pt-button pt-minimal pt-icon-home">Admin</button>}
-        <button className="pt-button pt-minimal pt-icon-home">Admin</button>
+        <button className="pt-button pt-minimal pt-icon-document">
+          <ProtectedLink protectedPath="/admin" />
+        </button>
+         <button className="pt-button pt-minimal pt-icon-home"><Link to="/dashboard">Home</Link></button>
         <button onClick={handleClick} className="pt-button pt-minimal pt-icon-document">Logout</button>
-        <button onClick={handleClick} className="pt-button pt-minimal pt-icon-document">Report</button>
         <span className="pt-navbar-divider"></span>
         <button className="pt-button pt-minimal pt-icon-user"></button>
         <button className="pt-button pt-minimal pt-icon-notifications"></button>

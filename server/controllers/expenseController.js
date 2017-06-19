@@ -3,8 +3,8 @@ const Expense = mongoose.model('Expense');
 const User = mongoose.model('User');
 const utils = require('../utils/helpers');
 
-const confirmOwner = (expense, user, admin=false) => {
-  if (!admin && expense.author.toString() !== user._id.toString()) {
+const confirmOwner = (expense, user, isAdmin=false) => {
+  if (!isAdmin && expense.author.toString() !== user._id.toString()) {
     throw Error('You must own a expense in order to edit it!');
   }
 };
@@ -20,7 +20,7 @@ exports.getExpensesAdmin = async (req, res) => {
   const page = req.params.page || 1;
   const limit = 300;
   const skip = (page * limit) - limit;
-  const id = req.user.admin ?  undefined : {'author': `${req.user._id}`};
+  const id = req.user.isAdmin ?  undefined : {'author': `${req.user._id}`};
   const expensesPromise = Expense
     .find(id)
     .skip(skip)
@@ -30,7 +30,7 @@ exports.getExpensesAdmin = async (req, res) => {
   const countPromise = Expense.find(id).count();
 
   const [expenses, count] = await Promise.all([expensesPromise, countPromise]);
-  confirmOwner(expenses[0], req.user, req.user.admin);
+  confirmOwner(expenses[0], req.user, req.user.isAdmin);
   const pages = Math.ceil(count / limit);
   if (!expenses.length && skip) {
     res.redirect(`/expenses/page/${pages}`);
@@ -92,6 +92,8 @@ exports.editExpense = async (req, res) => {
 exports.getExpenseReport = async (req, res) => {
   let userId = req.user;
   const sumPromise = Expense.getExpenseSum(req.params.start, req.params.end, req.user.id);
-  const [sumForRange, expenses] = await Promise.all([sumPromise]);
-  res.send(sumForRange);
+  const [sumForRange] = await Promise.all([sumPromise]);
+  
+  let response = sumForRange.length > 0 ? sumForRange[0] : '';
+  res.send(response);
 };

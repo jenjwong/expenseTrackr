@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT} from '../index';
+import {GET_EXPENSES, ADD_EXPENSE, SELECT_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT, GET_EXPENSES_ADMIN} from '../index';
 import {formatDateForServer} from '../../utils/helpers';
 
 export const handleExpenseSubmit = (data) => {
@@ -16,7 +16,7 @@ export const createExpense = (data) => {
     axios.post('/api/v1/expenses',  data)
     .then((res) => {
       let expense = res.data;
-      
+
       dispatch({ type: ADD_EXPENSE, expense })
     })
     .catch((error) => console.error(`Error in createExpense action creator: ${error}`));
@@ -56,17 +56,19 @@ export const getExpenses = (expenses) => {
   };
 };
 
+
+// TODO: nested date refactor
 export const getExpensesAdmin = (expenses) => {
   return (dispatch) => {
     axios.get('/api/v1/expenses/admin')
     .then((res) => {
-      let expenses = res.data;
-      dispatch({ type: GET_EXPENSES, expenses })
+      let expenses = res.data.expenses;
+
+      dispatch({ type: GET_EXPENSES_ADMIN, expenses })
     })
-    .catch((error) => console.error(`Error in getExpenses action creator: ${error}`));
+    .catch((error) => console.error(`Error in getExpensesAdmin action creator: ${error}`));
   };
 };
-
 
 export const getExpenseReport = (start, end) => {
   console.log('THIS IS ACTION CONTROLLER REPORT')

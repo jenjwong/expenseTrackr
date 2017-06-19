@@ -3,14 +3,17 @@ import {Route, Redirect, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Splash from './Splash';
 import Dashboard from './Dashboard';
+import DashboardWrapper from './DashboardWrapper';
+import Navbar from '../components/Navbar';
 
 const Main = (props) => {
   if (props.isLoggedIn) {
     return (
       <Switch>
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/admin" component={DashboardWrapper} />
+        <Route path="/dashboard" component={DashboardWrapper} />
         <Redirect to="/dashboard" />
-        <Route component={Dashboard} />
+        <Route component={DashboardWrapper} />
       </Switch>
     )
   }
