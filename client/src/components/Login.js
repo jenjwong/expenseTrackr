@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import FormField from './Form/FormField';
 import submit from './Form/loginHelpers';
 
 class LoginFunc extends PureComponent {
   componentDidMount() {
     // this.props.login({email: "user@user.com", password: "u"})
-    // this.props.login({ email: 'a@a.com', password: 'a' });
+    this.props.login({ email: 'a@a.com', password: 'a' });
     // this.props.login({ email: 'j@j.com', password: 'j' });
   }
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/actionCreators';
-import Dialogue from '../components/Dialogue';
 import ExpenseForm from '../containers/ExpenseFormContainer';
 import Table from '../components/Table/Table';
 import DatePicker from '../containers/DatePickerContainer';

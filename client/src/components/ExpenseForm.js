@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import FormField from './Form/FormField';
 import MetaFormField from './Form/MetaFormField';

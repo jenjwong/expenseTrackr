@@ -4,7 +4,7 @@ import './Background.css';
 const Background = props => (
   <div className="background--wrapper">
     <div className="background--img">
-      <img src={props.img} />
+      <img src={props.img} alt="background" />
     </div>
     <div className="background--main-wrapper">
       {props.children}

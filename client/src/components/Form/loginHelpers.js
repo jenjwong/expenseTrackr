@@ -19,7 +19,6 @@ const submit = (props, login) => {
 
   if (isError) {
     throw new SubmissionError(error);
-    return false;
   }
   login({ email, password });
 };
