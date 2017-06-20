@@ -5,7 +5,6 @@
     "install-packages": "concurrently \"cd server && npm i\" \"cd client && npm i\"",
     "dev": "concurrently \"cd server && nodemon server.js\" \"cd client && npm run start\"",
     "test-db": "nodemon --exec  './node_modules/.bin/mocha --reporter spec --no-timeouts --recursive'",
-    "client-test": "node scripts/test.js --env=jsdom",
     "headless-tests": "cd test-end-to-end && codeceptjs run --steps",
     "selenium-start": "cd test-end-to-end && selenium-standalone start",
     "test-update": "npm run test -- -u"
