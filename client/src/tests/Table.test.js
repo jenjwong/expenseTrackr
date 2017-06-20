@@ -8,9 +8,9 @@ const items = [{ _id: '1223', name: 'Thing I bought', amount: '9', created: '101
 
 const headers = ['name', 'amount'];
 
-const reduxFormChange = 'reduxFormChange';
+const reduxFormChange = () => 'reduxFormChange';
 
-const handleDelete = 'handleDelete';
+const handleDelete = () => 'handleDelete';
 
 test('Table should render an row for expense in expenses', () => {
   const component = shallow(<Table headers={['name', 'amount']} item={items} handleDelete={() => <div />} reduxFormChange={() => <div />} />);
