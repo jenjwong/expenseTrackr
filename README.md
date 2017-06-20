@@ -19,17 +19,16 @@ Generate personalized big-data about spending habits by manually entering expens
 
 ## Getting Started
 
-To get a copy of the project up and running on your local machine clone the repository and execute:
+To get a copy of the project up and running on your local machine clone the repository and in your root and client directories execute:
 ```
 npm i
 ```
-in the root and client directories.
 
 Start the development environment by running mongod to boot up the mongo daemon and in another window from the root directory run:
 ```
 npm run dev
 ```
- This command starts the webpack dev-server and the express server. Rename server/variables.env.examples to variables.env and configure your settings.
+ This command starts the webpack dev-server and express server. Rename server/variables.env.examples to variables.env and configure your settings.
 
 Authenticate admin users in the mongo shell by running:
 ```
@@ -48,7 +47,7 @@ To streamline Front-End development Expense Trackr uses:
 Server-side expense Trackr uses Express and MongoDB. Flow of control is implemented using ES6 async await.
 
 ### Database Design
-Expense Trackr's database has a User and Expense model and uses aggregation for complex queries. Expense Trackr implements this relationship by placing User_id as a foreign key on Expenses, allowing for future feature development of shared expenses.
+Expense Trackr's database is designed with User and Expense models and uses aggregation for complex queries. Expense Trackr implements this relationship by placing User_id as a foreign key on Expenses, allowing for future feature development of shared expenses.
 
 ### API Design
 Expense Trackr implements REST-APIs. [Click here for a list of semantically named endpoints](https://github.com/jenjwong/expenseTrackr/blob/development/server/routes/index.js)
