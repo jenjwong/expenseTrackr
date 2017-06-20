@@ -60,6 +60,13 @@ Auth is handled on the backend with Express Session/Passport and API's are prote
 
 Expense Trackr implements unit and end-to-end testing with Mocha, Enzyme, Jest, and Codecept.js.
 
+React components are tested with [Jest](https://facebook.github.io/jest/) with [Enzyme](https://github.com/airbnb/enzyme). Enzyme allows shallow rendering of components, making it easy to isolate tests. Shallow rendering in Enzyme renders components one level deep so a component can be tested in isolation of its child components. 
+
+To execute the client test suite run:
+```
+npm run test
+```
+
 Codecept.js, a JavaScript Selenium wrapper, stores pictures of browser state during failed tests in endToend.output. With your dev environment running execute:
 ```
 npm selenium-start
