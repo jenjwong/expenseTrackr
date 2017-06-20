@@ -19,10 +19,11 @@ Generate personalized big-data about spending habits by manually entering expens
 
 ## Getting Started
 
-To get a copy of the project up and running on your local machine clone the repository and from the root directory execute:
+To get a copy of the project up and running on your local machine clone the repository and execute:
 ```
-npm run install-packages
+npm i
 ```
+in the root and client directories.
 
 Start the development environment by running mongod to boot up the mongo daemon and in another window from the root directory run:
 ```
@@ -39,27 +40,27 @@ db.users.updateOne( { "name" : "admin" },  {$set:{"isAdmin" :  true}} )
 To streamline Front-End development Expense Trackr uses:
 
 * [Facebook's Create React App](https://github.com/facebookincubator/create-react-app)
-* [Blueprint](http://blueprintjs.com/), Palantir's [new React-based UI toolkit](https://medium.com/@palantir/scaling-product-design-with-blueprint-25492827bb4a)for styling UI and has a handful of built-in accessibility features.
+* [Blueprint](http://blueprintjs.com/), Palantir's [new React-based UI toolkit](https://medium.com/@palantir/scaling-product-design-with-blueprint-25492827bb4a) for styling UI and has a handful of built-in accessibility features.
 * Redux-Forms to minimize form boiler-plate code
 *  Moment.js and Numeral.js for consistent styling of times and numbers
 
 ### Server-Side Technologies
-Expense Trackr uses Express and MongoDB server-side. Flow of control is implemented using ES6 async await.
+Server-side expense Trackr uses Express and MongoDB. Flow of control is implemented using ES6 async await.
 
 ### Database Design
 Expense Trackr's database has a User and Expense model and uses aggregation for complex queries. Expense Trackr implements this relationship by placing User_id as a foreign key on Expenses, allowing for future feature development of shared expenses.
 
 ### API Design
-Expense Trackr uses REST-APIs. [Click here for a list of semantically named endpoints](https://github.com/jenjwong/expenseTrackr/blob/development/server/routes/index.js)
+Expense Trackr implements REST-APIs. [Click here for a list of semantically named endpoints](https://github.com/jenjwong/expenseTrackr/blob/development/server/routes/index.js)
 
 ### Routing
-Expense Trackr uses React-Router 4. Auth is handled on the backend and API's are protected server-side. The client routes unauthenticated users to the login page and API endpoints only accept calls from logged-in users.
+Auth is handled on the backend with Express Session/Passport and API's are protected server-side. Using React-Router 4, the client routes unauthenticated users to the login page and API endpoints only accept calls from logged-in users.
 
 ## Tests
 
 Expense Trackr implements unit and end-to-end testing with Mocha, Enzyme, Jest, and Codecept.js.
 
-Codecept.js, a JavaScript Selenium wrapper, is used for end-to-end testing. Codecept.js stores pictures of browser state during failed tests in endToend.output. With your dev environment running execute:
+Codecept.js, a JavaScript Selenium wrapper, stores pictures of browser state during failed tests in endToend.output. With your dev environment running execute:
 ```
 npm selenium-start
 ```
