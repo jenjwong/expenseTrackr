@@ -39,12 +39,12 @@ db.users.updateOne( { "name" : "admin" },  {$set:{"isAdmin" :  true}} )
 To streamline Front-End development Expense Trackr uses:
 
 * [Facebook's Create React App](https://github.com/facebookincubator/create-react-app)
-* [Blueprint](http://blueprintjs.com/), Palantir's [new React-based UI toolkit](https://medium.com/@palantir/scaling-product-design-with-blueprint-25492827bb4a) for styling UI and has a handful of built-in accessibility features.
+* [Blueprint](http://blueprintjs.com/), Palantir's [new React-based UI toolkit](https://medium.com/@palantir/scaling-product-design-with-blueprint-25492827bb4a) for styling UI. Blueprint ships with a handful of built-in accessibility features.
 * Redux-Forms to minimize form boiler-plate code
 *  Moment.js and Numeral.js for consistent styling of times and numbers
 
 ### Server-Side Technologies
-Server-side expense Trackr uses Express and MongoDB. Flow of control is implemented using ES6 async await.
+Server-side, expense Trackr uses Express and MongoDB. Flow of control is implemented using ES6 async await.
 
 ### Database Design
 Expense Trackr's database is designed with User and Expense models and uses aggregation for complex queries. Expense Trackr implements this relationship by placing User_id as a foreign key on Expenses, allowing for future feature development of shared expenses.
@@ -61,7 +61,7 @@ Expense Trackr implements unit and end-to-end testing with Mocha, Enzyme, Jest, 
 
 React components are tested with [Jest](https://facebook.github.io/jest/) with [Enzyme](https://github.com/airbnb/enzyme). Enzyme allows shallow rendering of components, making it easy to isolate tests. Shallow rendering in Enzyme renders components one level deep so a component can be tested in isolation of its child components. 
 
-To execute the client test suite run:
+To execute the client test suite, in the client directory run:
 ```
 npm run test
 ```
