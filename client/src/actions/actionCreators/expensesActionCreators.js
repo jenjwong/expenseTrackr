@@ -42,6 +42,7 @@ export const getExpenses = expenses => (dispatch) => {
   axios.get('/api/v1/expenses/')
     .then((res) => {
       const data = res.data;
+      console.log('getting expenses', data)
       dispatch({ type: GET_EXPENSES, data });
     })
     .catch(error => console.error(`Error in getExpenses action creator: ${error}`));
@@ -59,7 +60,6 @@ export const getExpensesAdmin = expenses => (dispatch) => {
 
 export const getExpenseReport = (start, end) => (dispatch) => {
   axios.get(`/api/v1/report/${start}/${end}`)
-  // axios.get(`/api/v1/expenses/report/${start}/${end}`)
     .then((res) => {
       const report = res.data;
       dispatch({ type: GET_REPORT, report });

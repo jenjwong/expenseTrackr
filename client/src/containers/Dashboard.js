@@ -13,6 +13,8 @@ import './Dashboard.css';
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getExpenses();
+
+    // keep this in for dev
     this.props.getExpenseReport();
     this.props.reduxFormReset('addExpense');
   }
