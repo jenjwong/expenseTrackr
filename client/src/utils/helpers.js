@@ -4,7 +4,11 @@ import numeral from 'numeral';
 import DOMPurify from 'dompurify';
 
 
-export const formatDateForServer = timestamp => moment(timestamp).format('MMM DD YYYY');
+export const formatDateForServer = timestamp => {
+  const [year, month, day] = timestamp.split('-');
+  const date = new Date(`${month}-${day}-${year}`);
+  return moment(date).format('MMM DD YYYY');
+}
 
 export const formatDateForForms = timestamp => moment(timestamp).format('YYYY-MM-DD');
 
@@ -25,10 +29,10 @@ export const isAuth = (handleData) => {
   .catch(error => console.error(`Error in isAuth helper function: ${error}`));
 };
 
-// formats dates and dollars for display
+// formats dates and dollars for display (more robust wtih moment(fVal).isValid() but throws warning)
 export const formatVal = (input) => {
   const fVal = input.toString();
-  return moment(fVal).isValid() && fVal.includes('-') ? moment(fVal).format('l') :
+  return fVal.includes('-') && fVal.includes(':') ? moment(fVal).format('l') :
   parseInt(fVal, 10) !== parseInt(fVal, 10) || fVal.match(/[a-zA-Z]/) ? fVal : numeral(fVal).format('$0,0.00');
 };
 

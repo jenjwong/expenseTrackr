@@ -7,10 +7,7 @@ const getExpenses = (state = [], action) => [...state, ...action.data.expenses];
 const editExpense = (state = [], action) => state.map(item => item._id === action.expense._id ? action.expense : item);
 
 const deleteExpense = (state = [], action) => (
-  state.reduce((acc, expense) => {
-    expense._id === action.expense._id ? acc : acc.push(expense);
-    return acc;
-  }, [])
+  state.reduce((acc, expense) => expense._id === action.expense._id ? acc : acc.push(expense), [])
 );
 
 const expenses = (state = [], action) => {

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import FormField from './Form/FormField';
 import submit from './Form/loginHelpers';

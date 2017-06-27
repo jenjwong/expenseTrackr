@@ -4,6 +4,9 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "devDependencies": {
+    "enzyme": "2.4.1",
+    "enzyme-to-json": "^1.5.1",
+    "react-addons-test-utils": "^15.6.0",
     "react-scripts": "1.0.7"
   },
   "dependencies": {
@@ -11,14 +14,11 @@
     "@blueprintjs/datetime": "^1.17.0",
     "axios": "^0.16.2",
     "dompurify": "0.8.5",
-    "enzyme": "^2.8.2",
-    "enzyme-to-json": "^1.5.1",
     "moment": "^2.18.1",
     "numeral": "^2.0.6",
-    "react": "^15.6.0",
+    "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.5.2",
-    "react-addons-test-utils": "^15.6.0",
-    "react-dom": "^15.6.0",
+    "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",

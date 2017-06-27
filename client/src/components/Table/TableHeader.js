@@ -2,7 +2,9 @@ import React from 'react';
 
 const TableHeader = ({ headers }) => (
   <thead>
-    {headers.map(header => <th key={header}>{header}</th>)}
+    <tr>
+      {headers.map(header => <th key={header}>{header}</th>)}
+    </tr>
   </thead>
   );
 

@@ -3,7 +3,7 @@ import { formatDateForServer, sanitize } from '../../utils/helpers';
 
 const submit = (props, handleExpenseSubmit) => {
   const sanitizedProps = sanitize(props);
-  let { name = '', date = '', type = '', description = '', amount = '', _id = '', author = '', created = undefined } = sanitizedProps;
+  let { name = '', date = '', type = '', description = '', amount = '', _id = '', created = undefined } = sanitizedProps;
 
   const error = {};
   let isError = false;

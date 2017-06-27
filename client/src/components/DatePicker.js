@@ -13,7 +13,11 @@ export default class DataRangePicker extends Component {
 
   handleDateChange = (range) => {
     let [start, end] = range;
-    range.includes(null) ? null : this.props.getExpenseReport(start, end);
+    if (range.includes(null)) {
+      // clear expense report
+    } else {
+      this.props.getExpenseReport(start, end);
+    }
     this.setState({start, end});
   }
 
