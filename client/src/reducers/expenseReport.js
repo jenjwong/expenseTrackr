@@ -1,13 +1,13 @@
-import { GET_REPORT } from '../actions';
+import { GET_REPORT_WEEKLY } from '../actions';
 
 
-const getExpenseReport = (state = {}, action) => ({ ...state.total, total: action.report.total });
+const getExpenseReportWeekly = (state = [], action) => ([ ...state,  ...action.report ]);
 
 
 const expenseReport = (state = {}, action) => {
   switch (action.type) {
-    case GET_REPORT:
-      return getExpenseReport(state, action);
+    case GET_REPORT_WEEKLY:
+      return getExpenseReportWeekly(state, action);
     default:
       return state;
   }

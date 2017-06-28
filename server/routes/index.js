@@ -15,7 +15,6 @@ module.exports = function (app) {
 
   // dev error handler
   if (app.get('env') === 'development') {
-    /* Development Error Handler - Prints stack trace */
     app.use(errorHandlers.developmentErrors);
   }
 

@@ -70,13 +70,3 @@ exports.editExpense = async (req, res) => {
   }).exec();
   res.send(expense);
 };
-
-// default by week, but allow for any period of time
-exports.getExpenseReport = async (req, res) => {
-  const userId = req.user;
-  const sumPromise = Expense.getExpenseSum(req.params.start, req.params.end, req.user.id);
-  const [sumForRange] = await Promise.all([sumPromise]);
-
-  const response = sumForRange.length > 0 ? sumForRange[0] : '';
-  res.send(response);
-};

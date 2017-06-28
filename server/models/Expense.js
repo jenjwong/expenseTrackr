@@ -53,22 +53,44 @@ expenseSchema.post('init', function () {
 // https://docs.mongodb.com/manual/reference/operator/aggregation/week/
 
 expenseSchema.statics.getExpenseSum = function (start = Date.now(), end = Date.new(), userId = '') {
-  return this.aggregate([
+  console.log('called')
+  return this.aggregate( [
     {
-      $match: {
-        $and: [
-          { created: { $gte: new Date(start), $lt: new Date(end) } },
-          { author: mongoose.Types.ObjectId(userId) },
-        ],
-      },
-    },
-    {
-      $group: {
-        _id: { $week: '$created' },
-        total: { $sum: { $divide: ['$amount', 100] } },
-      },
-    },
-  ]);
+         $match: {
+           $and: [
+             { date: { $gte: new Date(start), $lt: new Date(end) } },
+             { author: mongoose.Types.ObjectId(userId) },
+           ],
+         },
+       },
+     {
+       $group:
+         {
+           _id: { week: { $week: "$date"}, year: { $year: "$date" } },
+            total: { $sum: { $divide: ['$amount', 100] } },
+           entries: { $addToSet: "$_id" }
+          //  entries: { $addToSet: { _id: '$$ROOT' }  }
+         }
+     }
+   ]);
 };
+// expenseSchema.statics.getExpenseSum = function (start = Date.now(), end = Date.new(), userId = '') {
+//   return this.aggregate([
+//     {
+//       $match: {
+//         $and: [
+//           { created: { $gte: new Date(start), $lt: new Date(end) } },
+//           { author: mongoose.Types.ObjectId(userId) },
+//         ],
+//       },
+//     },
+//     {
+//       $group: {
+//         _id: { $week: '$created' },
+//         total: { $sum: { $divide: ['$amount', 100] } },
+//       },
+//     },
+//   ]);
+// };
 
 module.exports = mongoose.model('Expense', expenseSchema);

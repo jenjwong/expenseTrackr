@@ -16,7 +16,7 @@ export default class DataRangePicker extends Component {
     if (range.includes(null)) {
       // clear expense report
     } else {
-      this.props.getExpenseReport(start, end);
+      this.props.getExpenseReportWeekly(start, end);
     }
     this.setState({start, end});
   }

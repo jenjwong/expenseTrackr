@@ -15,11 +15,12 @@ class Dashboard extends Component {
     this.props.getExpenses();
 
     // keep this in for dev
-    this.props.getExpenseReport();
+    this.props.getExpenseReportWeekly();
     this.props.reduxFormReset('addExpense');
   }
 
   render() {
+    console.log(this.props, 'dash props')
     const { expenses, reduxFormChange, deleteExpense, expenseReport } = this.props;
 
     const tableHeaders = ['Name', 'Description', 'Type', 'Date', 'Amount'];

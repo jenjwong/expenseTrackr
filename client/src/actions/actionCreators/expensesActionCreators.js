@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_EXPENSES, ADD_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_REPORT, GET_EXPENSES_ADMIN } from '../index';
+import { GET_EXPENSES, ADD_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, GET_EXPENSES_ADMIN } from '../index';
 import { formatDateForServer } from '../../utils/helpers';
 import { reduxFormReset } from './utilsActionCreators';
 
@@ -42,7 +42,6 @@ export const getExpenses = expenses => (dispatch) => {
   axios.get('/api/v1/expenses/')
     .then((res) => {
       const data = res.data;
-      console.log('getting expenses', data)
       dispatch({ type: GET_EXPENSES, data });
     })
     .catch(error => console.error(`Error in getExpenses action creator: ${error}`));
@@ -56,13 +55,4 @@ export const getExpensesAdmin = expenses => (dispatch) => {
       dispatch({ type: GET_EXPENSES_ADMIN, expenses });
     })
     .catch(error => console.error(`Error in getExpensesAdmin action creator: ${error}`));
-};
-
-export const getExpenseReport = (start, end) => (dispatch) => {
-  axios.get(`/api/v1/report/${start}/${end}`)
-    .then((res) => {
-      const report = res.data;
-      dispatch({ type: GET_REPORT, report });
-    })
-    .catch(error => console.error(`Error in getExpenses action creator: ${error}`));
 };

@@ -1,6 +1,6 @@
 const reportRouter = require('express').Router();
 const { catchErrors } = require('../utils/errorHandlers');
-const expenseController = require('../controllers/expenseController.js');
+const expenseController = require('../controllers/reportController.js');
 
-reportRouter.get('/:start/:end', catchErrors(expenseController.getExpenseReport));
+reportRouter.get('/weekly/:start/:end', catchErrors(expenseController.getExpenseReport));
 module.exports = reportRouter;
