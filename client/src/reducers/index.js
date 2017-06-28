@@ -1,11 +1,18 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 import isLoggedIn from './login';
-import expenses from './expenses';
+import expenseDictionary from './expenseDictionary';
+import expenseIds from './expenses';
 import expenseReport from './expenseReport';
 import adminExpenses from './adminExpenses';
 
-const appReducer = combineReducers({ form, isLoggedIn, expenses, expenseReport, adminExpenses });
+const appReducer = combineReducers({
+  form,
+  isLoggedIn,
+  expenseIds,
+  expenseDictionary,
+  expenseReport,
+  adminExpenses });
 
 // Resets reducer to inital state on logout
 const rootReducer = (state, action) => {

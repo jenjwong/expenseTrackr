@@ -8,3 +8,23 @@
   width: 10px;
   font-size: 140%;
 }
+
+.name {
+  width: 25%;
+}
+
+.description {
+  width: 25%;
+}
+
+.type {
+  width: 20%;
+}
+
+.date {
+  width: 15%;
+}
+
+.amount {
+  width: 10%;
+}

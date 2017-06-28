@@ -36,7 +36,7 @@ exports.getExpenses = async (req, res) => {
 
   const expensesPromise = Expense
     .find(id)
-    .sort({ created: 'desc' });
+    .sort({ date: 'desc' });
 
   const countPromise = Expense.find(id).count();
 

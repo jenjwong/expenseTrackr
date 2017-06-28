@@ -1,28 +1,30 @@
-import { ADD_EXPENSE, GET_EXPENSES, EDIT_EXPENSE, DELETE_EXPENSE } from '../actions';
+import { ADD_ONE_EXPENSE_LIST, GET_EXPENSE_LIST, DELETE_ONE_EXPENSE_LIST } from '../actions';
 
-const addExpense = (state = [], action) => [action.expense, ...state];
+const getAllExpenses = (state = [], action) => [...state, ...action.data.result]
 
-const getExpenses = (state = [], action) => [...state, ...action.data.expenses];
-
-const editExpense = (state = [], action) => state.map(item => item._id === action.expense._id ? action.expense : item);
+const addExpense = (state = [], action) => [action.expense._id, ...state]
 
 const deleteExpense = (state = [], action) => (
-  state.reduce((acc, expense) => expense._id === action.expense._id ? acc : acc.push(expense), [])
-);
+  state.reduce((itemIds, itemId) => {
+    if(itemId === action.expense._id) {
+      return itemIds
+    }
+    itemIds.push(itemId);
+    return itemIds
+  }, [])
+)
 
-const expenses = (state = [], action) => {
+const expenseList = (state = [], action) => {
   switch (action.type) {
-    case GET_EXPENSES:
-      return getExpenses(state, action);
-    case ADD_EXPENSE:
+    case ADD_ONE_EXPENSE_LIST:
       return addExpense(state, action);
-    case EDIT_EXPENSE:
-      return editExpense(state, action);
-    case DELETE_EXPENSE:
+    case GET_EXPENSE_LIST:
+      return getAllExpenses(state, action);
+    case DELETE_ONE_EXPENSE_LIST:
       return deleteExpense(state, action);
     default:
       return state;
   }
 };
 
-export default expenses;
+export default expenseList;

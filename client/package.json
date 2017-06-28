@@ -15,6 +15,7 @@
     "axios": "^0.16.2",
     "dompurify": "0.8.5",
     "moment": "^2.18.1",
+    "normalizr": "^2.1.0",
     "numeral": "^2.0.6",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.5.2",

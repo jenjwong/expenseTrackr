@@ -20,8 +20,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log(this.props, 'dash props')
-    const { expenses, reduxFormChange, deleteExpense, expenseReport } = this.props;
+    const { reduxFormChange, deleteExpense, expenseReport, expenseDictionary, allExpenses } = this.props;
 
     const tableHeaders = ['Name', 'Description', 'Type', 'Date', 'Amount'];
     return (
@@ -29,18 +28,44 @@ class Dashboard extends Component {
         <h1 className="dashboard--report-header">Report</h1>
         <div className="dashboard--report-wrapper">
           <DatePicker className="dashboard--report-datepicker" expenseReport={expenseReport} />
-          <DisplayValue className="dashboard--report-display-value" val={expenseReport.total} format={formatVal} text="You Spent:" />
+          <DisplayValue
+            className="dashboard--report-display-value"
+            val={expenseReport.total}
+            format={formatVal}
+            text="You Spent:"
+          />
+            </div>
+          <div className="dashboard--report--table-wrapper">
+            {this.props.expenseReport.map(week => {
+              return (
+                <div key={week._id.week}>
+                  <h3 key={`${week._id.week}${week._id.year}`}>{`${week._id.week} ${week._id.year} Total Spent: ${week.total}`}</h3>
+                  <Table
+                    key={week._id.week}
+                    items={week.entries.map(entry => expenseDictionary[entry])}
+                    headers={tableHeaders}
+                    reduxFormChange={reduxFormChange}
+                    handleDelete={deleteExpense}
+                    formName={'addExpense'}
+                  />
+                </div>
+              )
+            })}
+
+
         </div>
-        <h1>Add Expense</h1>
-        <ExpenseForm />
-        <h1>Expenses</h1>
-        <Table
-          items={expenses}
-          headers={tableHeaders}
-          reduxFormChange={reduxFormChange}
-          handleDelete={deleteExpense}
-          formName={'addExpense'}
-        />
+        <div>
+          <h1>Add Expense</h1>
+          <ExpenseForm />
+          <h1>Expenses</h1>
+          <Table
+            items={allExpenses}
+            headers={tableHeaders}
+            reduxFormChange={reduxFormChange}
+            handleDelete={deleteExpense}
+            formName={'addExpense'}
+          />
+        </div>
       </div>
     );
   }
@@ -50,6 +75,8 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({
   expenses: state.expenses,
   expenseReport: state.expenseReport,
+  expenseDictionary: state.expenseDictionary,
+  allExpenses: state.expenseIds.map(expense => state.expenseDictionary[expense]),
 });
 
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));

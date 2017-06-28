@@ -6,7 +6,7 @@ import Table from '../components/Table/Table';
 
 import './Dashboard.css';
 
-class Dashboard extends PureComponent {
+class AdminDashboard extends PureComponent {
   componentDidMount() {
     this.props.getExpensesAdmin();
   }
@@ -34,4 +34,4 @@ const mapStateToProps = state => ({ adminExpenses: state.adminExpenses });
 
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);
