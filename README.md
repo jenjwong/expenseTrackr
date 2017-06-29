@@ -82,9 +82,9 @@ npm run headless-tests
 ```
 This will start the selenium server and run your Codecept tests.
 
-Mongo models and operations are tested with Mocha and stub-data.
+Mongo models and operations are tested with Mocha and stub-data. From the root directory execute:
 ```
-npm run test
+npm run test-db
 ```
 
 ## License
