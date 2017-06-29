@@ -53,7 +53,7 @@ When an expense is added, edited, deleted or updated the change is sent to the s
 Server-side, expense Trackr uses Express and MongoDB. Flow of control is implemented using ES6 async await.
 
 ### Database Design
-Expense Trackr's database is designed with User and Expense models and uses aggregation for complex queries and groups expenses by week and date. Expense Trackr implements the relationship between users and expenses by placing User_id as a foreign key on Expenses, allowing for future feature development of shared expenses.
+Expense Trackr's database is designed with User and Expense models and uses aggregation for complex queries and groups expenses by week. Expense Trackr implements the relationship between users and expenses by placing User_id as a foreign key on Expenses, allowing for future feature development of shared expenses.
 
 ### API Design
 Expense Trackr implements REST-APIs. [Click here for a list of semantically named endpoints](https://github.com/jenjwong/expenseTrackr/blob/development/server/routes/index.js)
