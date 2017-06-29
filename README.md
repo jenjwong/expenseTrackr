@@ -74,7 +74,7 @@ npm run test
 
 Codecept.js, a JavaScript Selenium wrapper, stores pictures of browser state during failed tests in endToend.output. With your dev environment running execute:
 ```
-npm selenium-start
+npm run selenium-start
 ```
 and
 ```
