@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/actionCreators';
 import ExpenseForm from '../containers/ExpenseFormContainer';
 import Table from '../components/Table/Table';
+import ReportTable from '../components/ReportTable';
 import DatePicker from '../containers/DatePickerContainer';
 import DisplayValue from '../components/DisplayValue';
 import { formatVal } from '../utils/helpers';
@@ -13,15 +14,12 @@ import './Dashboard.css';
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getExpenses();
-
-    // keep this in for dev
-    this.props.getExpenseReportWeekly();
     this.props.reduxFormReset('addExpense');
   }
 
   render() {
     const { reduxFormChange, deleteExpense, expenseReport, expenseDictionary, allExpenses } = this.props;
-
+    const totalSum = expenseReport.reduce((sum, item) => item.total + sum, 0);
     const tableHeaders = ['Name', 'Description', 'Type', 'Date', 'Amount'];
     return (
       <div className="dashboard-wrapper">
@@ -30,32 +28,24 @@ class Dashboard extends Component {
           <DatePicker className="dashboard--report-datepicker" expenseReport={expenseReport} />
           <DisplayValue
             className="dashboard--report-display-value"
-            val={expenseReport.total}
+            val={totalSum > 0 ? totalSum : ''}
             format={formatVal}
             text="You Spent:"
           />
-            </div>
-          <div className="dashboard--report--table-wrapper">
-            {this.props.expenseReport.map(week => {
-              return (
-                <div key={week._id.week}>
-                  <h3 key={`${week._id.week}${week._id.year}`}>{`${week._id.week} ${week._id.year} Total Spent: ${week.total}`}</h3>
-                  <Table
-                    key={week._id.week}
-                    items={week.entries.map(entry => expenseDictionary[entry])}
-                    headers={tableHeaders}
-                    reduxFormChange={reduxFormChange}
-                    handleDelete={deleteExpense}
-                    formName={'addExpense'}
-                  />
-                </div>
-              )
-            })}
-
-
+        </div>
+        <div className="dashboard--report--table-wrapper">
+          <ReportTable
+            expenseReport={expenseReport}
+            expenseDictionary={expenseDictionary}
+            headers={tableHeaders}
+            reduxFormChange={reduxFormChange}
+            handleDelete={deleteExpense}
+            formName={'addExpense'}
+            format={formatVal}
+          />
         </div>
         <div>
-          <h1>Add Expense</h1>
+          <h1>Add/Edit Expenses</h1>
           <ExpenseForm />
           <h1>Expenses</h1>
           <Table
