@@ -1,6 +1,6 @@
 import { MODIFY_EXPENSE_DICTIONARY } from '../actions';
 
-const modifyExpenseDictionary = (state = [], action) => ({...state, ...action.data.entities.expenses})
+const modifyExpenseDictionary = (state = [], action) => ({ ...state, ...action.data.entities.expenses });
 
 const expenseDictionary = (state = [], action) => {
   switch (action.type) {

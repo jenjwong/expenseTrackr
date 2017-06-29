@@ -1,18 +1,18 @@
 import { ADD_ONE_EXPENSE_LIST, GET_EXPENSE_LIST, DELETE_ONE_EXPENSE_LIST } from '../actions';
 
-const getAllExpenses = (state = [], action) => [...state, ...action.data.result]
+const getAllExpenses = (state = [], action) => [...state, ...action.data.result];
 
-const addExpense = (state = [], action) => [action.expense._id, ...state]
+const addExpense = (state = [], action) => [action.expense._id, ...state];
 
 const deleteExpense = (state = [], action) => (
   state.reduce((itemIds, itemId) => {
-    if(itemId === action.expense._id) {
-      return itemIds
+    if (itemId === action.expense._id) {
+      return itemIds;
     }
     itemIds.push(itemId);
-    return itemIds
+    return itemIds;
   }, [])
-)
+);
 
 const expenseList = (state = [], action) => {
   switch (action.type) {
