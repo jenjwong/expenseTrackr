@@ -31,7 +31,7 @@ Scenario('Users must have unique email address to register', (I) => {
   I.fillField('Email', 'test@test.com');
   I.fillField('Password', 'test');
   I.click('Submit');
-  I.waitForElement('nav', 7);
+  I.wait(5);
   I.seeInCurrentUrl('/dashboard');
 });
 
@@ -40,6 +40,6 @@ Scenario('User can login', (I) => {
   I.fillField('Email', 'test@test.com');
   I.fillField('Password', 'test');
   I.click('Submit');
-  I.waitForElement('nav', 7);
+  I.wait(5);
   I.seeInCurrentUrl('/dashboard');
 });
