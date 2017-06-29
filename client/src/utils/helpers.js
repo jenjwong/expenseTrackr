@@ -4,11 +4,11 @@ import numeral from 'numeral';
 import DOMPurify from 'dompurify';
 
 
-export const formatDateForServer = timestamp => {
+export const formatDateForServer = (timestamp) => {
   const [year, month, day] = timestamp.split('-');
   const date = new Date(`${month}-${day}-${year}`);
   return moment(date).format('MMM DD YYYY');
-}
+};
 
 export const formatDateForForms = timestamp => moment(timestamp).format('YYYY-MM-DD');
 

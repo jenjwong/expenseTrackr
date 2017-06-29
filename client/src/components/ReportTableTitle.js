@@ -1,8 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import Table from './Table/Table';
-
-// import './ReportTable.css';
 
 const ReportTableTitle = ({ week, format }) => {
   const start = moment(`${week._id.year}`).add(`${week._id.week}`, 'weeks').startOf('week').format('ddd MMM Do');

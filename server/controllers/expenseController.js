@@ -9,7 +9,7 @@ const confirmOwner = (expense, user, isAdmin = false) => {
   }
 };
 
-// amount saved in database returns; fn converts cents to dollars
+// amount saved in database returns value in cents because of pre-hook; fn converts cents to dollars
 exports.createExpense = async (req, res) => {
   req.body.author = req.user._id;
   const expense = await (new Expense(req.body)).save();

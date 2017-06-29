@@ -54,7 +54,7 @@ export const deleteExpense = (data, e) => (dispatch) => {
 export const getExpenses = expenses => (dispatch) => {
   axios.get('/api/v1/expenses/')
     .then((res) => {
-      const data = normalize(res.data.expenses, schema.arrayOfExpenses)
+      const data = normalize(res.data.expenses, schema.arrayOfExpenses);
       dispatch({ type: MODIFY_EXPENSE_DICTIONARY, data });
       dispatch({ type: GET_EXPENSE_LIST, data });
     })

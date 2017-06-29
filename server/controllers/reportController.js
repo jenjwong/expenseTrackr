@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { centsToDollars } = require('../utils/helpers');
 
 const Expense = mongoose.model('Expense');
 

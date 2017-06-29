@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { LOGIN_SUCCESS, LOGOUT } from '../index';
-import {setLocalStorage, removeLocalStorage} from '../../utils/localStorage';
+import { setLocalStorage, removeLocalStorage } from '../../utils/localStorage';
 
 export const login = data => (dispatch) => {
   axios.post('/api/v1/login', data)

@@ -20,8 +20,4 @@ expenseRouter.delete('/:id',
 expenseRouter.get('/admin', catchErrors(expenseController.getExpensesAdmin));
 expenseRouter.get('/page/:page', catchErrors(expenseController.getExpenses));
 
-expenseRouter.post('/seed',
-  catchErrors(expenseController.createExpenseDummyData),
-);
-
 module.exports = expenseRouter;

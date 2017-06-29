@@ -53,25 +53,25 @@ expenseSchema.post('init', function () {
 // https://docs.mongodb.com/manual/reference/operator/aggregation/week/
 
 expenseSchema.statics.getExpenseSum = function (start = Date.now(), end = Date.new(), userId = '') {
-  return this.aggregate( [
+  return this.aggregate([
     {
-         $match: {
-           $and: [
+      $match: {
+        $and: [
              { date: { $gte: new Date(start), $lt: new Date(end) } },
              { author: mongoose.Types.ObjectId(userId) },
-           ],
-         },
-       },
-        { $sort : { date : 1} },
-     {
-       $group:
-         {
-           _id: { week: { $week: "$date"}, year: { $year: "$date" } },
-            total: { $sum: { $divide: ['$amount', 100] } },
-           entries: { $addToSet: "$_id" }
-         }
-     }
-   ]);
+        ],
+      },
+    },
+        { $sort: { date: 1 } },
+    {
+      $group:
+      {
+        _id: { week: { $week: '$date' }, year: { $year: '$date' } },
+        total: { $sum: { $divide: ['$amount', 100] } },
+        entries: { $addToSet: '$_id' },
+      },
+    },
+  ]);
 };
 
 module.exports = mongoose.model('Expense', expenseSchema);
